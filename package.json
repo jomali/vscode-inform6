@@ -3,6 +3,11 @@
     "displayName": "Inform 6",
     "description": "Inform 6 extension for VS Code",
     "version": "0.1.0",
+    "homepage": "https://bitbucket.org/Natrium729/vscode-inform6/",
+    "bugs": "https://bitbucket.org/Natrium729/vscode-inform6/issues?status=new&status=open",
+    "license": "MIT",
+    "author": "Nathanaël Marion <natrium729@gmail.com> (http://ulukos.com/)",
+    "repository": "bitbucket:Natrium729/vscode-inform6",
     "engines": {
         "vscode": "^1.36.0"
     },
