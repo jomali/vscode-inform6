@@ -1,0 +1,24 @@
+{
+    "scopeName": "inform6template.injection",
+    "injectionSelector": "L:source.inform6.template",
+    "patterns": [
+        {
+            "include": "#variableInclusion"
+        },
+        {
+            "include": "#inform7Inclusion"
+        }
+    ],
+    "repository": {
+        "variableInclusion": {
+            "name": "variable.other.inform6template",
+            "begin": "(?<!\\\\centerline)\\{(?!(\\s|\\\\))",
+            "end": "\\}"
+        },
+        "inform7Inclusion": {
+            "name": "variable.other.inform6template",
+            "begin": "\\(\\+",
+            "end": "\\+\\)"
+        }
+    }
+}

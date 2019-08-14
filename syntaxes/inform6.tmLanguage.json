@@ -1,0 +1,676 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Inform 6",
+    "scopeName": "source.inform6",
+    "patterns": [
+        {
+            "include": "#switchComment"
+        },
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#routine"
+        },
+        {
+            "include": "#embeddedRoutine"
+        },
+        {
+            "include": "#constant"
+        },
+        {
+            "include": "#keyword"
+        },
+        {
+            "include": "#support"
+        },
+        {
+            "include": "#variable"
+        },
+        {
+            "include": "#javascriptExecution"
+        },
+        {
+            "include": "#objectDeclaration"
+        },
+        {
+            "include": "#class"
+        },
+        {
+            "include": "#string"
+        }
+    ],
+    "repository": {
+        "switchComment": {
+            "patterns": [
+                {
+                    "name": "keyword.other.directive.inform6",
+                    "match": "!%.*$"
+                }
+            ]
+        },
+        "comment": {
+            "patterns": [
+                {
+                    "name": "comment.line.bang.inform6",
+                    "match": "!.*$"
+                }
+            ]
+        },
+        "routine": {
+            "patterns": [
+                {
+                    "name": "meta.routine.inform6",
+                    "begin": "^\\s*\\[",
+                    "end": "\\]",
+                    "captures": {
+                        "0": { "name": "keyword.other.directive.inform6" }
+                    },
+                    "patterns": [
+                        { "include": "#routineHead" },
+                        { "include": "#routineBody" }
+                    ]
+                }
+            ]
+        },
+        "embeddedRoutine": {
+            "patterns": [
+                {
+                    "name": "meta.routine.inform6",
+                    "begin": "\\[",
+                    "end": "\\]",
+                    "captures": {
+                        "0": { "name": "keyword.other.directive.inform6" }
+                    },
+                    "patterns": [
+                        { "include": "#embeddedRoutineHead" },
+                        { "include": "#routineBody" }
+                    ]
+                }
+            ]
+        },
+        "routineHead": {
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "begin": "([a-zA-Z_]\\w*)\\b",
+                    "beginCaptures": {
+                        "1": { "name": "entity.name.function.inform6" }
+                    },
+                    "end": "(?=;)",
+                    "patterns": [
+                        {
+                            "include": "#comment"
+                        },
+                        {
+                            "name": "variable.parameter.inform6",
+                            "match": "\\b[a-zA-Z_]\\w*\\b"
+                        }
+                    ]
+                }
+            ]
+        },
+        "embeddedRoutineHead": {
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "begin": "(?=[a-zA-Z_])",
+                    "end": "(?=;)",
+                    "patterns": [
+                        {
+                            "include": "#comment"
+                        },
+                        {
+                            "name": "variable.parameter.inform6",
+                            "match": "\\b[a-zA-Z_]\\w*\\b"
+                        }
+                    ]
+                }
+            ]
+        },
+        "routineBody": {
+            "patterns": [
+                {
+                    "begin": "(?=;)",
+                    "end": "(?=\\])",
+                    "patterns": [
+                        {
+                            "include": "#comment"
+                        },
+                        {
+                            "include": "#constant"
+                        },
+                        {
+                            "include": "#keyword"
+                        },
+                        {
+                            "include": "#support"
+                        },
+                        {
+                            "include": "#variable"
+                        },
+                        {
+                            "include": "#class"
+                        },
+                        {
+                            "include": "#javascriptExecution"
+                        },
+                        {
+                            "include": "#string"
+                        }
+                    ]
+                }
+            ]
+        },
+        "keyword": {
+            "patterns": [
+                {
+                    "include": "#keywordControl"
+                },
+                {
+                    "include": "#keywordDirective"
+                },
+                {
+                    "include": "#keywordOperator"
+                }
+            ]
+        },
+        "keywordControl": {
+            "patterns": [
+                {
+                    "match": "(move)\\s+([a-zA-Z_]\\w*)\\s+(to)",
+                    "captures": {
+                        "1": { "name": "keyword.control.inform6" },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "include": "#variable"
+                                }
+                            ]
+                        },
+                        "3": { "name": "keyword.control.inform6" }
+                    }
+                },
+                {
+                    "name": "keyword.control.inform6",
+                    "match": "\\b(box|break|continue|do|else|font\\s+(on|off)|for|give|if|inversion|jump|move|new_line|objectloop|print|print_ret|quit|remove|return|rfalse|rtrue|spaces|string|switch|until|while)\\b"
+                },
+                {
+                    "name": "keyword.control.zmachine.inform6",
+                    "match": "\\b(read|restore|save|style\\s+(roman|bold|underline|reverse|fixed))\\b"
+                }
+            ]
+        },
+        "keywordDirective": {
+            "patterns": [
+                {
+                    "name": "keyword.other.directive.inform6",
+                    "match": "(?i)(\\b|#)(Abbreviate|Array|Attribute|Constant|Default|End|Endif|Extend|Global|Ifdef|Iffalse|Ifndef|Iftrue|Import|Include|Link|Lowstring|Message(\\s+(error|fatalerror|warning))?|Property|Release|Replace|Serial|StatusLine\\s+(time|score)|Stub|Switches|System_file|Verb(\\s+meta)?|Zcharacter)\\b"
+                },
+                {
+                    "name": "invalid.deprecated.inform6",
+                    "match": "(?i)(\\b|#)(Dictionary|Fake_action|Ifv3|Ifv5|Nearby|Trace|Version)\\b"
+                },
+                {
+                    "name": "keyword.other.inform6",
+                    "match": "\\b(alias|first|last|only|replace)\\b"
+                }
+            ]
+        },
+        "keywordOperator": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.expression.inform6",
+                    "match": "\\b(class|has|hasnt|in|notin|ofclass|or|private|provides|with)\\b"
+                },
+                {
+                    "name": "keyword.operator.comparison.inform6",
+                    "match": "==|~=|<=|<|>=|>"
+                },
+                {
+                    "name": "keyword.operator.logical.inform6",
+                    "match": "&&|\\|\\||~~"
+                },
+                {
+                    "name": "keyword.operator.array.inform6",
+                    "match": "-->|->"
+                },
+                {
+                    "name": "keyword.operator.increment.inform6",
+                    "match": "\\+\\+"
+                },
+                {
+                    "name": "keyword.operator.decrement.inform6",
+                    "match": "--"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.inform6",
+                    "match": "\\+|-|\\*|/|%"
+                },
+                {
+                    "name": "keyword.operator.assignment.inform6",
+                    "match": "="
+                },
+                {
+                    "name": "keyword.operator.bitwise.inform6",
+                    "match": "&|\\||~"
+                },
+                {
+                    "name": "punctuation.separator.comma.inform6",
+                    "match": ","
+                },
+                {
+                    "name": "punctuation.accessor.inform6",
+                    "match": "\\.&|\\.#|\\."
+                }
+            ]
+        },
+        "constant": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.integer.binary.inform6",
+                    "match": "\\$\\$[01]{1,16}\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.hexadecimal.inform6",
+                    "match": "\\$[0-9a-fA-F]{1,4}\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.inform6",
+                    "match": "(\\b|-)\\d+\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.character.inform6",
+                    "match": "'(.|@([\\^`:][aeiouAEIOU]|:y|'[aeiouyAEIOUY]|c[cC]|~[anoANO]|/[oO]|o[aA]|ss|oe|OE|ae|AE|th|Th|et|Et|LL|!!|\\?\\?|<<|>>))'"
+                },
+                {
+                    "name": "constant.language.inform6",
+                    "match": "\\b(false|nothing|NULL|true)\\b"
+                }
+            ]
+        },
+        "support": {
+            "patterns": [
+                {
+                    "include": "#supportFunction"
+                },
+                {
+                    "include": "#supportConstant"
+                },
+                {
+                    "include": "#supportVariable"
+                },
+                {
+                    "include": "#supportOpcode"
+                }
+            ]
+        },
+        "supportFunction": {
+            "patterns": [
+                {
+                    "name": "support.function.inform6",
+                    "match": "\\b(Achieved|AddToScope|AfterRoutines|AllowPushDir|Banner|call|ChangePlayer|child|children|CommonAncestor|copy|create|destroy|DictionaryLookup|GetGNAOfObject|HasLightSource|IndirectlyContains|IsSeeThrough|Locale|LoopOverScope|LTI_Insert|metaclass|MoveFloatingObjects|NextEntry|NextWord|NextWordStopped|NounDomain|ObjectIsUntouchable|OffersLight|parent|ParseToken|PlaceInScope|PlayerTo|print_to_array|PronounNotice|PronounValue|random|recreate|remaining|ScopeWithin|SetPronoun|SetTime|sibling|StartDaemon|StartTimer|StopDaemon|StopTimer|TestScope|TryNumber|UnsignedCompare|WordAddress|WordInProperty|WordLength|WriteListFrom|YesOrNo)\\b"
+                },
+                {
+                    "name": "support.function.glulx.inform6",
+                    "match": "\\b(DecimalNumber|glk|KeyCharPrimitive|PrintAnything|PrintAnyToArray|StatusLineHeight)\\b"
+                },
+                {
+                    "name": "support.function.property.inform6",
+                    "match": "\\b(add_to_scope|after|article|articles|before|cant_go|capacity|d_to|daemon|describe|description|door_dir|door_to|e_to|each_turn|found_in|grammar|in_to|initial|inside_description|invent|life|list_together|n_to|name|ne_to|number|nw_to|orders|out_to|parse_name|plural|react_after|react_before|s_to|se_to|short_name|short_name_indef|short_name_indef|sw_to|time_left|time_out|u_to|w_to|when_closed|when_off|when_on|when_open|with_key)\\b"
+                }
+            ]
+        },
+        "supportConstant": {
+            "patterns": [
+                {
+                    "name": "support.constant.listingstyle.inform6",
+                    "match": "\\b(ALWAYS_BIT|CONCEAL_BIT|DEFART_BIT|ENGLISH_BIT|FULLINV_BIT|INDENT_BIT|ISARE_BIT|NEWLINE_BIT|NOARTICLE_BITPARTINV_BIT|RECURSE_BIT|TERSE_BIT|WORKFLAG_BIT)\\b"
+                },
+                {
+                    "name": "support.constant.gprresult.inform6",
+                    "match": "\\b(GPR_FAIL|GPR_MULTIPLE|GPR_NUMBER|GPR_PREPOSITION|GPR_REPARSE)\\b"
+                },
+                {
+                    "name": "support.constant.grammartoken.inform6",
+                    "match": "\\b(CREATURE_TOKEN|HELD_TOKEN|MULTI_TOKEN|MULTIEXCEPT_TOKEN|MULTIHELD_TOKEN|MULTIINSIDE_TOKEN|NUMBER_TOKEN|NOUN_TOKEN|ELEMENTARY_TT|SCOPE_TT|REPARSE_CODE)\\b"
+                },
+                {
+                    "name": "support.constant.scopereason.inform6",
+                    "match": "\\b(EACHTURN_REASON|LOOPOVERSCOPE_REASON|PARSING_REASON|REACT_AFTER_REASON|REACT_BEFORE_REASON|TALKING_REASON|TESTSCOPE_REASON)\\b"
+                },
+                {
+                    "name": "support.constant.parsererror.inform6",
+                    "match": "\\b(ANIMA_PE|ASKSCOPE_PE|CANTSEE_PE|EXCEPT_PE|ITGONE_PE|JUNKAFTER_PE|MMULTI_PE|MULTI_PE|NOTHELD_PE|NOTHING_PE|NUMBER_PE|SCENERY_PE|STUCK_PE|TOOFEW_PE|TOOLIT_PE|UPTO_PE|VAGUE_PE|VERB_PE)\\b"
+                },
+                {
+                    "name": "support.constant.vm.inform6",
+                    "match": "\\b(TARGET_GLULX|TARGET_ZCODE|WORDSIZE)\\b"
+                },
+                {
+                    "name": "support.constant.glulx.inform6",
+                    "match": "\\b(GG_MAINWIN_ROCK|GG_QUOTEWIN_ROCK|GG_STATUSWIN_ROCK)\\b"
+                }
+            ]
+        },
+        "supportVariable": {
+            "patterns": [
+                {
+                    "name": "support.variable.inform6",
+                    "match": "\\b(c_style|compass|d_obj|deadflag|e_obj|etype|in_obj|keep_silent|multiple_object|n_obj|ne_obj|notify_mode|nw_obj|out_obj|parsed_number|parser_action|parser_inflection|parser_one|parser_two|s_obj|score|se_obj|selfobj|sw_obj|take_flag|thedark|u_obj|verb_word|verb_wordnum|w_obj|wn)\\b"
+                },
+                {
+                    "name": "support.variable.glulx.inform6",
+                    "match": "\\b(gg_arguments|gg_statuswin_size)\\b"
+                },
+                {
+                    "name": "support.variable.actions.group1.inform6",
+                    "match": "\\b(FullScore|LMode1|LMode2|LMode3|Miscellany|NotifyOff|NotifyOn|Objects|Places|PluralFound|Prompt|Pronouns|Quit|Restart|Restore|Save|Score|ScriptOff|ScriptOn|TheSame|Verify|Version)\\b"
+                },
+                {
+                    "name": "support.variable.actions.group2.inform6",
+                    "match": "\\b(Close|Disrobe|Drop|Eat|Empty|EmptyT|Enter|Examine|Exit|GetOff|Go|GoIn|Insert|Inv|InvTall|InvWide|LetGo|Lock|Look|Open|PutOn|Receive|Remove|Search|SwitchOff|SwitchOn|Take|Transfer|Unlock|Wait|Wear)\\b"
+                },
+                {
+                    "name": "support.variable.actions.group3.inform6",
+                    "match": "\\b(Answer|Ask|AskFor|Attack|Blow|Burn|Buy|Climb|Consult|Cut|Dig|Drink|Fill|Give|Jump|JumpOver|Kiss|Listen|LookUnder|Mild|No|NotUnderstood|Order|Pray|Pull|Push|PushDir|Rub|Set|SetTo|Show|Sing|Sleep|Smell|Sorry|Squeeze|Strong|Swim|Swing|Taste|Tell|Think|ThrowAt|ThrownAt|Tie|Touch|Turn|VagueGo|Wake|WakeOther|Wave|WaveHands|Yes)\\b"
+                },
+                {
+                    "name": "support.variable.attribute.inform6",
+                    "match": "\\b(absent|animate|clothing|concealed|container|door|edible|enterable|female|general|light|lockable|locked|male|moved|neuter|on|open|openable|pluralname|proper|scenery|scored|static|supporter|switchable|talkable|transparent|visited|workflag|worn)\\b"
+                }
+            ]
+        },
+        "supportOpcode": {
+            "patterns": [
+                {
+                    "name": "support.function.opcode.inform6",
+                    "match": "@(catch|pull|push|quit|restore|save|throw)\\b"
+                },
+                {
+                    "name": "support.function.opcode.zmachine.inform6",
+                    "match": "@(aread|buffer_mode|encode_text|erase_window|input_stream|loadb|output_stream|print_table|read_char|set_color|set_cursor|set_window|sound_effect|split_window|tokenise)\\b"
+                },
+                {
+                    "name": "support.function.opcode.glulx.inform6",
+                    "match": "@(accelfunc|accelparam|acos|add|aload|aloadb|aloadbit|aloads|asin|astore|astoreb|astorebit|astores|atan|atan2|binarysearch|bitand|bitnot|bitor|bitxor|call|callf|callfi|callfii|callfiii|ceil|copy|copyb|copys|cos|debugtrap|div|exp|fadd|fdiv|floor|fmod|fmul|fsub|ftonumn|ftonumz|gestalt|getiosys|getmemsize|getstringtbl|glk|jeq|jfeq|jfge|jfgt|jfle|jflt|jfne|jge|jgeu|jgt|jgtu|jisinf|jisnan|jle|jleu|jltu|jne|jlt|jnz|jump|jumpabs|jz|linearsearch|linkedsearch|log|malloc|mcopy|mfree|mod|mul|mzero|neg|nop|numtof|pow|protect|random|restart|restoreundo|return|saveundo|setiosys|setmemsize|setrandom|setstringtbl|sexb|sexs|shiftl|sin|sqrt|sshiftr|stkcopy|stkcount|stkpeek|stkroll|stkswap|streamchar|streamnum|streamstr|streamunichar|sub|tailcall|tan|ushiftr|verify)\\b"
+                }
+            ]
+        },
+        "class": {
+            "patterns": [
+                {
+                    "name": "support.class.inform6",
+                    "match": "\\b(Class|CompassDirection|Object|Routine|String)\\b"
+                }
+            ]
+        },
+        "variable": {
+            "patterns": [
+                {
+                    "name": "variable.other.actiontype.inform6",
+                    "match": "##[a-zA-Z]+\\b"
+                },
+                {
+                    "name": "variable.language.inform6",
+                    "match": "\\b(action|action_to_be|actor|consult_from|consult_word|indef_mode|inp1|inp2|inventory_stage|NextEntry|lm_n|lm_p|location|noun|player|real_location|scope_reason|scope_stage|second|self|standard_interpreter|the_time|vague_word|verb_word)\\b"
+                },
+                {
+                    "name": "variable.language.grammartoken.inform6",
+                    "match": "\\b(creature|held|multi|multiexcept|multiheld|multiinside|noun|number|topic)\\b"
+                },
+                {
+                    "name": "variable.language.glulx.inform6",
+                    "match": "\\b(gg_event|gg_mainwin|gg_statuswin)\\b"
+                }
+            ]
+        },
+        "javascriptExecution": {
+            "patterns": [
+                {
+                    "begin": "(VorpleExecuteJavaScriptCommand|BuildCommand)\\(",
+                    "end": "\\)",
+                    "patterns": [
+                        {
+                            "include": "#javascriptCommand"
+                        },
+                        {
+                            "include": "#support"
+                        },
+                        {
+                            "include": "#variable"
+                        }
+                    ]
+                }
+            ]
+        },
+        "javascriptCommand": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.inform6",
+                    "begin": "\"",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.inform6"
+                        }
+                    },
+                    "end": "\"",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.inform6"
+                        }
+                    },
+                    "contentName": "meta.embedded.js",
+                    "patterns": [
+                        {
+                            "include": "#javascript"
+                        }
+                    ]
+                }
+            ]
+        },
+        "objectDeclaration": {
+            "patterns": [
+                {
+                    "match": "^([a-zA-Z_]\\w*)\\s*((?:->)(?:\\s*->)*)\\s*([a-zA-Z_]\\w*)?\\s*(\"[^\"]*?\")?\\s*([a-zA-Z_]\\w*)?",
+                    "captures": {
+                        "1": { "name": "entity.name.type.inform6" },
+                        "2": { "name": "storage.modifier.inform6" },
+                        "3": { "name": "variable.other.inform6" },
+                        "4": {
+                            "name": "string.quoted.double.inform6",
+                            "patterns": [
+                                {
+                                    "include": "#stringEscapeUnicode"
+                                },
+                                {
+                                    "include": "#stringEscapeSequence"
+                                },
+                                {
+                                    "include": "#stringPrintingVariable"
+                                }
+                            ]
+                        },
+                        "5": { "name": "invalid.illegal.inform6" }
+                    }
+                },
+                {
+                    "match": "^([a-zA-Z_]\\w*)\\s*([a-zA-Z_]\\w*)?\\s*(\"[^\"]*?\")?\\s*([a-zA-Z_]\\w*)?",
+                    "captures": {
+                        "1": { "name": "entity.name.type.inform6" },
+                        "2": { "name": "variable.other.inform6" },
+                        "3": {
+                            "name": "string.quoted.double.inform6",
+                            "patterns": [
+                                {
+                                    "include": "#stringEscapeUnicode"
+                                },
+                                {
+                                    "include": "#stringEscapeSequence"
+                                },
+                                {
+                                    "include": "#stringPrintingVariable"
+                                }
+                            ]
+                        },
+                        "4": { "name": "storage.modifier.inform6" }
+                    }
+                }
+            ]
+        },
+        "string": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.inform6",
+                    "begin": "\"",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.inform6"
+                        }
+                    },
+                    "end": "\"",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.inform6"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#stringEscapeUnicode"
+                        },
+                        {
+                            "include": "#stringEscapeSequence"
+                        },
+                        {
+                            "include": "#stringPrintingVariable"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.regexp.inform6",
+                    "begin": "'",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.inform6"
+                        }
+                    },
+                    "end": "(//(?:p)?)?(')",
+                    "endCaptures": {
+                        "1": {
+                            "name": "constant.character.escape.inform6"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.string.end.inform6"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#stringEscapeSequence"
+                        }
+                    ]
+                }
+            ]
+        },
+        "stringEscapeUnicode": {
+            "patterns": [
+                {
+                    "name": "constant.character.escape.inform6",
+                    "match": "@\\{[0-9a-fA-F]{1,4}\\}"
+                }
+            ]
+        },
+        "stringEscapeSequence": {
+            "patterns": [
+                {
+                    "name": "constant.character.escape.inform6",
+                    "match": "\\^|~|\\\\|@(@\\d{1,3}|[\\^`:][aeiouAEIOU]|:y|'[aeiouyAEIOUY]|c[cC]|~[anoANO]|/[oO]|o[aA]|ss|oe|ae|OE|AE|th|et|LL|!!|\\?\\?|<<|>>)"
+                }
+            ]
+        },
+        "stringPrintingVariable": {
+            "patterns": [
+                {
+                    "name": "variable.other.inform6",
+                    "match": "@[0-9]{2}"
+                }
+            ]
+        },
+        "javascript": {
+            "patterns": [
+                {
+                    "name": "invalid.illegal.js",
+                    "match": "//.*$"
+                },
+                {
+                    "name": "string.quoted.single.js",
+                    "match": "(?<=\")(')",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.string.end.js"
+                        }
+                    }
+                },
+                {
+                    "name": "string.quoted.single.js",
+                    "match": "(')([^'\"]*)(')?",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.string.begin.js"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.string.end.js"
+                        }
+                    }
+                },
+                {
+                    "name": "keyword.control.js",
+                    "match": "\\b(await|break|case|catch|continue|default|do|else|finally|for|goto|if|return|switch|throw|try|while|with|yield)\\b"
+                },
+                {
+                    "name": "keyword.operator.expression.js",
+                    "match": "\\b(delete|in|instanceof|new|typeof|void)\\b"
+                },
+                {
+                    "name": "keyword.other.js",
+                    "match": "\\b(debugger)\\b"
+                },
+                {
+                    "name": "constant.language.js",
+                    "match": "\\b(false|Infinity|NaN|true|undefined)\\b"
+                },
+                {
+                    "name": "storage.type.js",
+                    "match": "\\b(class|const|function|interface|let|var)\\b"
+                },
+                {
+                    "name": "storage.modifier.js",
+                    "match": "\\b(extends|private|protected|public|static)\\b"
+                },
+                {
+                    "name": "variable.language.js",
+                    "match": "\\b(arguments|null|this)\\b"
+                },
+                {
+                    "name": "support.class.js",
+                    "match": "\\b(Array|console|Date|Math|Number|Object|String)\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.js",
+                    "match": "\\b\\d+\\b"
+                },
+                {
+                    "name": "variable.other",
+                    "match": "(\\$|\\b[a-zA-Z_])\\w*?\\b"
+                },
+                {
+                    "name": "variable.other",
+                    "match": "\\$"
+                }
+            ]
+        }
+    }
+}

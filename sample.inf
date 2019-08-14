@@ -1,0 +1,63 @@
+!% -Cu
+!% -D
+
+! This is a comment.
+! Above, some comments setting compiler options.
+
+! Some directives.
+Include "Parser";
+Array buffer --> 9;
+
+#Ifndef MY_CONSTANT;
+Constant MY_CONSTANT;
+#Endif
+
+! A routine.
+[ Main alpha beta;
+	print "Welcome to ~Inform 6 for VS Code~.^";
+	! Now some escape sequences and a printing variable.
+	print
+		"A variable: @18^
+		ë: @:e; Œ: @OE;
+		The Zcharacter for the backslash: @@92
+		A non-breaking space using Unicode: @{A0}";
+
+	! Some numbers (the last ones being characters).
+	alpha = 42 + -4205 - $3f08 / $$1000111010110 % ('x' + '@<<');
+
+	beta = random(2)
+	switch(beta) {
+		1: print "one";
+		2: print "two";
+	}
+
+	rtrue;
+];
+
+! A class.
+Class Treasure
+	with
+		award [ points;
+			if (self provides deposit_points)
+				score = score + self.deposit_points;
+			else
+				score = score + 5;
+			move self to trophy_case;
+			"You feel a sense of increased esteem and worth.";
+		],
+	has light;
+
+! A member of the newly created class.
+Treasure ingot "gold ingot" chest
+	with
+		name 'gold' 'ingot' 'ingots//p',
+		before [;
+			Burn: "You wouldn't melt that precious ingot?"
+		];
+
+! A routine executing a JavaScripp command.
+[ UpdateScore;
+	VorpleExecuteJavaScriptCommand(
+		BuildCommand("$('.score').html('", score, "')");
+	)
+];

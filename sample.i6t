@@ -1,0 +1,37 @@
+! Some free-stanging Inform code, with Inform 7 inclusions and variables.
+! This is usually not present directly in Inform 6 template files,
+! But are used in Inform 6 included in Inform 7.
+
+[ MyRoutine obj;
+	print {T};
+	print obj.(+ value +);
+];
+
+! And now what is usually present in a template file.
+
+B/samplet: A sample template.
+ 
+@Purpose: To showcase the syntax coloring
+of an Inform 6 template file.
+ 
+@-------------------------------------------------------------------------------
+
+@p A paragraph.
+This is a paragraph describing what the file does. It can contain |some code|, and mathematical expressions, like $T > 0$.
+
+@p Another paragraph.
+There can be multiple paragraphs in a row. Pragraphs can also contain {\it words in italic}.
+
+As well as spanning multiple lines.
+
+\centerline{Some of them can be centered.}
+\centerline{\it And combine it with italic.}
+
+And now some code.
+
+@c
+Array buffer -> 9;
+
+[ MyRoutine obj;
+	print obj.value;
+];

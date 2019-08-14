@@ -1,0 +1,99 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Inform 6 Template",
+    "scopeName": "source.inform6.template",
+    "patterns": [
+        {
+            "include": "#heading"
+        },
+        {
+            "include": "#inform6"
+        }
+    ],
+    "repository": {
+        "heading": {
+            "patterns": [
+                {
+                    "name": "markup.heading.inform6.template",
+                    "match": "^B/.*$"
+                },
+                {
+                    "name": "meta.paragraph.inform6.template",
+                    "begin": "^@p\\s+.*$",
+                    "beginCaptures": {
+                        "0": { "name": "markup.heading.inform6.template" }
+                    },
+                    "end": "(?=^@)",
+                    "patterns": [{
+                        "include": "#paragraph"
+                    }]
+                },
+                {
+                    "name": "meta.code.inform6.template",
+                    "begin": "^@c\\s+.*$",
+                    "beginCaptures": {
+                        "0": { "name": "markup.heading.inform6.template" }
+                    },
+                    "end": "(?=^@)",
+                    "patterns": [{
+                        "include": "#inform6"
+                    }]
+                },
+                {
+                    "name": "markup.heading.inform6.template",
+                    "begin": "^@.*$",
+                    "end": "(?=^@)"
+                }
+            ]
+        },
+        "paragraph": {
+            "patterns": [
+                {
+                    "name": "markup.inline.raw.inform6.template",
+                    "match": "(\\|)[^\\|]+(\\|)",
+                    "captures": {
+                        "1": { "name": "punctuation.definition.raw.inform6.template" },
+                        "2": { "name": "punctuation.definition.raw.inform6.template" }
+                    }
+                },
+                {
+                    "name": "markup.inline.raw.inform6.template",
+                    "match": "(\\$)[^\\$]+(\\$)",
+                    "captures": {
+                        "1": { "name": "punctuation.definition.raw.inform6.template" },
+                        "2": { "name": "punctuation.definition.raw.inform6.template" }
+                    }
+                },
+                {
+                    "name": "markup.center.inform6.template",
+                    "begin": "\\\\centerline(?=\\{)",
+                    "beginCaptures": {
+                        "0": { "name": "markup.bold.centered.inform6.template" }
+                    },
+                    "end": "\\}",
+                    "patterns": [{
+                        "include": "#paragraph"
+                    }]
+                },
+                {
+                    "name": "markup.italic.inform6.template",
+                    "begin": "(?<=\\{)(\\\\it)",
+                    "beginCaptures": {
+                        "0": { "name": "punctuation.definition.italic.inform6.template" }
+                    },
+                    "end": "(?=\\})",
+                    "patterns": [{
+                        "include": "#paragraph"
+                    }]
+                }
+            ]
+        },
+        "inform6": {
+            "patterns": [
+                {
+                    "include": "source.inform6"
+                }
+            ]
+        }
+    }
+}

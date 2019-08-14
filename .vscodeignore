@@ -1,0 +1,6 @@
+.vscode/**
+.vscode-test/**
+.gitignore
+TODO.md
+sample.inf
+sample.i6t

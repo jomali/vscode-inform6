@@ -1,0 +1,48 @@
+{
+    "name": "inform-6",
+    "displayName": "Inform 6",
+    "description": "Inform 6 extension for VS Code",
+    "version": "0.1.0",
+    "engines": {
+        "vscode": "^1.36.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "inform6",
+                "aliases": ["Inform 6", "inform6"],
+                "extensions": [".inf",".h"],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "inform6template",
+                "aliases": ["Inform 6 Template", "inform6template"],
+                "extensions": [".i6t"],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "inform6",
+                "scopeName": "source.inform6",
+                "path": "./syntaxes/inform6.tmLanguage.json",
+                "embeddedLanguages": {
+                    "meta.embedded.js": "javascript"
+                }
+            },
+            {
+                "language": "inform6template",
+                "scopeName": "source.inform6.template",
+                "path": "./syntaxes/inform6template.tmLanguage.json"
+            },
+            {
+                "scopeName": "inform6template.injection",
+                "path": "./syntaxes/inform6templateinjection.json",
+                "injectTo": ["source.inform6.template"]
+            }
+        ]
+    }
+}
