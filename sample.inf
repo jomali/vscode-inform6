@@ -55,7 +55,7 @@ Treasure ingot "gold ingot" chest
 			Burn: "You wouldn't melt that precious ingot?"
 		];
 
-! A routine executing a JavaScripp command.
+! A routine executing a JavaScript command.
 [ UpdateScore;
 	VorpleExecuteJavaScriptCommand(
 		BuildCommand("$('.score').html('", score, "')");

@@ -616,15 +616,19 @@
                 },
                 {
                     "name": "string.quoted.single.js",
-                    "match": "(')([^'\"]*)(')?",
-                    "captures": {
-                        "1": {
-                            "name": "punctuation.definition.string.begin.js"
-                        },
-                        "3": {
-                            "name": "punctuation.definition.string.end.js"
+                    "begin": "'",
+                    "beginCaptures": {
+                        "0": { "name": "punctuation.definition.string.begin.js" }
+                    },
+                    "end": "(')|(?=\")",
+                    "endCaptures": {
+                        "1": { "name": "punctuation.definition.string.end.js" }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#javascriptString"
                         }
-                    }
+                    ]
                 },
                 {
                     "name": "keyword.control.js",
@@ -663,12 +667,24 @@
                     "match": "\\b\\d+\\b"
                 },
                 {
-                    "name": "variable.other",
-                    "match": "(\\$|\\b[a-zA-Z_])\\w*?\\b"
+                    "name": "entity.name.function.js",
+                    "match": "(\\$|\\b[a-zA-Z_])[\\w\\$]*(?=\\s*\\()"
                 },
                 {
-                    "name": "variable.other",
-                    "match": "\\$"
+                    "name": "variable.other.js",
+                    "match": "(\\$|\\b[a-zA-Z_])[\\w\\$]*"
+                }
+            ]
+        },
+        "javascriptString": {
+            "patterns": [
+                {
+                    "name": "invalid.illegal.js",
+                    "match": "\\\\(?:[1-7][0-7]{0,2}|[0-7]{2,3})"
+                },
+                {
+                    "name": "constant.character.escape.js",
+                    "match": "\\\\(?:x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|u\\{([0-9a-fA-F]{1,})\\}|[^\" ])"
                 }
             ]
         }

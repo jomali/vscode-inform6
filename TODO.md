@@ -5,7 +5,7 @@
 - Syntax-colouring of executions of actions: `<Enter self>`, `<<Look>>`…
 - Snippets (routine, for, class, object).
 - Language server (for autocompletion, linting…)
-- Incirease indentation after having type the head of a routine.
+- Increase indentation after having typed the head of a routine.
 
 ## Bugs
 
