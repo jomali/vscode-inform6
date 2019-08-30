@@ -8,7 +8,7 @@
     "license": "MIT",
     "author": "Nathanaël Marion <natrium729@gmail.com> (http://ulukos.com/)",
     "publisher": "natrium729",
-    "repository": "bitbucket:Natrium729/vscode-inform6",
+    "repository": "https://gitlab.com/Natrium729/vscode-inform6.git",
     "engines": {
         "vscode": "^1.36.0"
     },
