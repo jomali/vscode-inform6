@@ -182,7 +182,7 @@
         "keywordControl": {
             "patterns": [
                 {
-                    "match": "(move)\\s+([a-zA-Z_]\\w*)\\s+(to)",
+                    "match": "(move)\\s+([a-zA-Z_]\\w*)\\s+(buffer|strong|table)",
                     "captures": {
                         "1": { "name": "keyword.control.inform6" },
                         "2": {
@@ -208,12 +208,19 @@
         "keywordDirective": {
             "patterns": [
                 {
+                    "match": "(Array)\\s+[a-zA-Z_]\\w*\\s+(buffer|string|table)",
+                    "captures": {
+                        "1": { "name": "keyword.other.directive.inform6" },
+                        "2": { "name": "keyword.other.directive.inform6" }
+                    }
+                },
+                {
                     "name": "keyword.other.directive.inform6",
-                    "match": "(?i)(\\b|#)(Abbreviate|Array|Attribute|Constant|Default|End|Endif|Extend|Global|Ifdef|Iffalse|Ifndef|Iftrue|Import|Include|Link|Lowstring|Message(\\s+(error|fatalerror|warning))?|Property|Release|Replace|Serial|StatusLine\\s+(time|score)|Stub|Switches|System_file|Verb(\\s+meta)?|Zcharacter)\\b"
+                    "match": "(?i)(\\b|#)(Abbreviate|Array|Attribute|Constant|Default|Dictionary|End|Endif|Extend|Global|Ifdef|Iffalse|Ifndef|Ifnot|Iftrue|Import|Include|Link|Message(\\s+(error|fatalerror|warning))?|Origsource|Property(\\s+additive)?|Release|Replace|Serial|StatusLine\\s+(time|score)|Stub|Switches|System_file|Undef|Verb(\\s+meta)?|Zcharacter)\\b"
                 },
                 {
                     "name": "invalid.deprecated.inform6",
-                    "match": "(?i)(\\b|#)(Dictionary|Fake_action|Ifv3|Ifv5|Nearby|Trace|Version)\\b"
+                    "match": "(?i)(\\b|#)(Fake_action|Ifv3|Ifv5|Lowstring|Nearby|Trace|Version)\\b"
                 },
                 {
                     "name": "keyword.other.inform6",
@@ -284,6 +291,10 @@
                     "match": "(\\b|-)\\d+\\b"
                 },
                 {
+                    "name": "constant.numeric.float.inform6",
+                    "match": "\\$[\\+-]\\d+(\\.\\d+)?(e[\\+-]\\d+)?\\b"
+                },
+                {
                     "name": "constant.numeric.integer.character.inform6",
                     "match": "'(.|@([\\^`:][aeiouAEIOU]|:y|'[aeiouyAEIOUY]|c[cC]|~[anoANO]|/[oO]|o[aA]|ss|oe|OE|ae|AE|th|Th|et|Et|LL|!!|\\?\\?|<<|>>))'"
                 },
@@ -313,20 +324,24 @@
             "patterns": [
                 {
                     "name": "support.function.inform6",
-                    "match": "\\b(Achieved|AddToScope|AfterRoutines|AllowPushDir|Banner|call|ChangePlayer|child|children|CommonAncestor|copy|create|destroy|DictionaryLookup|GetGNAOfObject|HasLightSource|IndirectlyContains|IsSeeThrough|Locale|LoopOverScope|LTI_Insert|metaclass|MoveFloatingObjects|NextEntry|NextWord|NextWordStopped|NounDomain|ObjectIsUntouchable|OffersLight|parent|ParseToken|PlaceInScope|PlayerTo|print_to_array|PronounNotice|PronounValue|random|recreate|remaining|ScopeWithin|SetPronoun|SetTime|sibling|StartDaemon|StartTimer|StopDaemon|StopTimer|TestScope|TryNumber|UnsignedCompare|WordAddress|WordInProperty|WordLength|WriteListFrom|YesOrNo)\\b"
+                    "match": "\\b(Achieved|AddToScope|AfterRoutines|AllowPushDir|Banner|call|Cap|Centre|ChangePlayer|child|children|CommonAncestor|copy|create|destroy|DictionaryLookup|GetGNAOfObject|HasLightSource|IndirectlyContains|IsSeeThrough|Length|Locale|LoopOverScope|LowerCase|LTI_Insert|metaclass|MoveFloatingObjects|NextEntry|NextWord|NextWordStopped|NounDomain|ObjectIsUntouchable|OffersLight|parent|ParseToken|PlaceInScope|PlayerTo|print_to_array|PrintCapitalised|PrintOrRun|PrintOrRunVal|PrintToBuffer|PronounNotice|PronounValue|random|recreate|remaining|ScopeWithin|SetColour|SetPronoun|SetTime|sibling|StartDaemon|StartTimer|StopDaemon|StopTimer|TestScope|TryNumber|UnsignedCompare|UpperCase|WordAddress|WordInProperty|WordLength|WriteListFrom|YesOrNo)\\b"
                 },
                 {
                     "name": "support.function.glulx.inform6",
-                    "match": "\\b(DecimalNumber|glk|KeyCharPrimitive|PrintAnything|PrintAnyToArray|StatusLineHeight)\\b"
+                    "match": "\\b(ClearScreen|DecimalNumber|DrawStatusLine|glk|KeyCharPrimitive|KeyDelay|MainWindow|MoveCursor|PrintAnything|PrintAnyToArray|ScreenHeight|ScreenWidth|StatusLineHeight)\\b"
                 },
                 {
                     "name": "support.function.property.inform6",
-                    "match": "\\b(add_to_scope|after|article|articles|before|cant_go|capacity|d_to|daemon|describe|description|door_dir|door_to|e_to|each_turn|found_in|grammar|in_to|initial|inside_description|invent|life|list_together|n_to|name|ne_to|number|nw_to|orders|out_to|parse_name|plural|react_after|react_before|s_to|se_to|short_name|short_name_indef|short_name_indef|sw_to|time_left|time_out|u_to|w_to|when_closed|when_off|when_on|when_open|with_key)\\b"
+                    "match": "\\b(add_to_scope|after|article|articles|before|before_implicit|cant_go|capacity|compass_look|d_to|daemon|describe|description|door_dir|door_to|e_to|each_turn|ext_initialise|ext_messages|found_in|grammar|in_to|initial|inside_description|invent|life|list_together|n_to|name|ne_to|number|nw_to|orders|out_to|parse_name|plural|react_after|react_before|s_to|se_to|short_name|short_name_indef|short_name_indef|sw_to|time_left|time_out|u_to|w_to|when_closed|when_off|when_on|when_open|with_key)\\b"
                 }
             ]
         },
         "supportConstant": {
             "patterns": [
+                {
+                    "name": "support.constant.library.inform6",
+                    "match": "\\b(LIBRARY_ENGLISH|LIBRARY_GRAMMAR|LIBRARY_PARSER|LIBRARY_VERBLIB|LIBRARY_VERSION)\\b"
+                },
                 {
                     "name": "support.constant.listingstyle.inform6",
                     "match": "\\b(ALWAYS_BIT|CONCEAL_BIT|DEFART_BIT|ENGLISH_BIT|FULLINV_BIT|INDENT_BIT|ISARE_BIT|NEWLINE_BIT|NOARTICLE_BITPARTINV_BIT|RECURSE_BIT|TERSE_BIT|WORKFLAG_BIT)\\b"
@@ -348,12 +363,16 @@
                     "match": "\\b(ANIMA_PE|ASKSCOPE_PE|CANTSEE_PE|EXCEPT_PE|ITGONE_PE|JUNKAFTER_PE|MMULTI_PE|MULTI_PE|NOTHELD_PE|NOTHING_PE|NUMBER_PE|SCENERY_PE|STUCK_PE|TOOFEW_PE|TOOLIT_PE|UPTO_PE|VAGUE_PE|VERB_PE)\\b"
                 },
                 {
+                    "name": "support.constant.colour.inform6",
+                    "match": "\\b(CLR_AZURE|CLR_BLACK|CLR_BLUE|CLR_CYAN|CLR_DEFAULT|CLR_GREEN|CLR_MAGENTA|CLR_PURPLE|CLR_RED|CLR_WHITE|CLR_YELLOW|WIN_ALL|WIN_MAIN|WIN_STATUS)\\b"
+                },
+                {
                     "name": "support.constant.vm.inform6",
                     "match": "\\b(TARGET_GLULX|TARGET_ZCODE|WORDSIZE)\\b"
                 },
                 {
                     "name": "support.constant.glulx.inform6",
-                    "match": "\\b(GG_MAINWIN_ROCK|GG_QUOTEWIN_ROCK|GG_STATUSWIN_ROCK)\\b"
+                    "match": "\\b(FLOAT_INFINITY|FLOAT_NINFINITY|FLOAT_NAN|GG_MAINWIN_ROCK|GG_QUOTEWIN_ROCK|GG_STATUSWIN_ROCK)\\b"
                 }
             ]
         },
@@ -361,11 +380,11 @@
             "patterns": [
                 {
                     "name": "support.variable.inform6",
-                    "match": "\\b(c_style|compass|d_obj|deadflag|e_obj|etype|in_obj|keep_silent|multiple_object|n_obj|ne_obj|notify_mode|nw_obj|out_obj|parsed_number|parser_action|parser_inflection|parser_one|parser_two|s_obj|score|se_obj|selfobj|sw_obj|take_flag|thedark|u_obj|verb_word|verb_wordnum|w_obj|wn)\\b"
+                    "match": "\\b(c_style|compass|d_obj|deadflag|e_obj|etype|in_obj|keep_silent|multiple_object|n_obj|ne_obj|notify_mode|nw_obj|out_obj|parsed_number|parser_action|parser_inflection|parser_one|parser_two|s_obj|score|se_obj|selfobj|sw_obj|sys_statusline_flag|take_flag|thedark|turns|u_obj|verb_word|verb_wordnum|w_obj|wn)\\b"
                 },
                 {
                     "name": "support.variable.glulx.inform6",
-                    "match": "\\b(gg_arguments|gg_statuswin_size)\\b"
+                    "match": "\\b(gg_arguments|gg_statuswin_cursize|gg_statuswin_size)\\b"
                 },
                 {
                     "name": "support.variable.actions.group1.inform6",
@@ -377,7 +396,7 @@
                 },
                 {
                     "name": "support.variable.actions.group3.inform6",
-                    "match": "\\b(Answer|Ask|AskFor|Attack|Blow|Burn|Buy|Climb|Consult|Cut|Dig|Drink|Fill|Give|Jump|JumpOver|Kiss|Listen|LookUnder|Mild|No|NotUnderstood|Order|Pray|Pull|Push|PushDir|Rub|Set|SetTo|Show|Sing|Sleep|Smell|Sorry|Squeeze|Strong|Swim|Swing|Taste|Tell|Think|ThrowAt|ThrownAt|Tie|Touch|Turn|VagueGo|Wake|WakeOther|Wave|WaveHands|Yes)\\b"
+                    "match": "\\b(Answer|Ask|AskFor|AskTo|Attack|Blow|Burn|Buy|Climb|Consult|Cut|Dig|Drink|Fill|Give|Jump|JumpIn|JumpOn|JumpOver|Kiss|Listen|LookUnder|Mild|No|NotUnderstood|Order|Pray|Pull|Push|PushDir|Rub|Set|SetTo|Show|Sing|Sleep|Smell|Sorry|Squeeze|Strong|Swim|Swing|Taste|Tell|Think|ThrowAt|ThrownAt|Tie|Touch|Turn|VagueGo|Wake|WakeOther|Wave|WaveHands|Yes)\\b"
                 },
                 {
                     "name": "support.variable.attribute.inform6",
@@ -393,7 +412,7 @@
                 },
                 {
                     "name": "support.function.opcode.zmachine.inform6",
-                    "match": "@(aread|buffer_mode|encode_text|erase_window|input_stream|loadb|output_stream|print_table|read_char|set_color|set_cursor|set_window|sound_effect|split_window|tokenise)\\b"
+                    "match": "@(aread|buffer_mode|check_unicode|encode_text|erase_window|input_stream|loadb|output_stream|print_table|print_unicode|read_char|set_color|set_cursor|set_window|sound_effect|split_window|tokenise)\\b"
                 },
                 {
                     "name": "support.function.opcode.glulx.inform6",
@@ -417,7 +436,7 @@
                 },
                 {
                     "name": "variable.language.inform6",
-                    "match": "\\b(action|action_to_be|actor|consult_from|consult_word|indef_mode|inp1|inp2|inventory_stage|NextEntry|lm_n|lm_p|location|noun|player|real_location|scope_reason|scope_stage|second|self|standard_interpreter|the_time|vague_word|verb_word)\\b"
+                    "match": "\\b(action|action_to_be|actor|consult_from|consult_word|indef_mode|inp1|inp2|inventory_stage|NextEntry|lm_n|lm_o|location|noun|player|real_location|scope_reason|scope_stage|second|self|standard_interpreter|the_time|vague_word|verb_word)\\b"
                 },
                 {
                     "name": "variable.language.grammartoken.inform6",
@@ -579,7 +598,7 @@
             "patterns": [
                 {
                     "name": "constant.character.escape.inform6",
-                    "match": "@\\{[0-9a-fA-F]{1,4}\\}"
+                    "match": "@\\{[0-9a-fA-F]{1,6}\\}"
                 }
             ]
         },

@@ -24,6 +24,7 @@ Constant MY_CONSTANT;
 
 	! Some numbers (the last ones being characters).
 	alpha = 42 + -4205 - $3f08 / $$1000111010110 % ('x' + '@<<');
+	@fadd $+100 $-1.2345e+2 alpha;
 
 	beta = random(2)
 	switch(beta) {
