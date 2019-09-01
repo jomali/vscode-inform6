@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.2
+
+### Added
+
+- Highlighting of features of newer Inform 6 compiler and library. (Amongst them: new support functions, constants and properties; Glulx floating-point numbers.)
+
 ## 0.1.1
 
 ### Changed
