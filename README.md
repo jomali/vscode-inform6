@@ -23,3 +23,9 @@ This compiling feature is mainly for testing. When releasing your story, use the
 ## Known issues
 
 See the file `TODO.md` in the repository.
+
+## Licence
+
+Copyright (c) 2019-present Nathanaël Marion
+
+Licenced under the MIT License (see the LICENSE file).
