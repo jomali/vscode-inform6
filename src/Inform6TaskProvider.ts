@@ -46,6 +46,7 @@ export class Inform6TaskProvider implements vscode.TaskProvider {
 		const compilerArgs = vscode.workspace.getConfiguration("inform6").get<string[]>("compilerCommands") || []
 
 		// Add the mandatory args.
+		compilerArgs.push("-c") // No code excerpt in error messages.
 		compilerArgs.push("-E1") // Microsoft error style (for the problem matcher).
 		compilerArgs.push("${file}") // The source to compile.
 
