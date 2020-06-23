@@ -5,15 +5,30 @@ import { Inform6TaskProvider } from "./Inform6TaskProvider"
 let inform6TaskProvider: vscode.Disposable | undefined
 
 export function activate(context: vscode.ExtensionContext): void {
-	inform6TaskProvider = vscode.tasks.registerTaskProvider(
-		Inform6TaskProvider.Inform6TaskType,
-		new Inform6TaskProvider()
-	)
+	registerInform6TaskProvider()
+
+	// Register a new Inform 6 task provider when settings affecting it change.
+	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => {
+		if (e.affectsConfiguration("inform6.inform6Path") || e.affectsConfiguration("inform6.compilerCommands")) {
+			registerInform6TaskProvider()
+			console.log("Settings changed!")
+		}
+	}))
 
 	const command_compile = vscode.commands.registerCommand("inform6.compile", (uri: vscode.Uri) => {
 		compile(uri)
 	})
 	context.subscriptions.push(command_compile)
+}
+
+function registerInform6TaskProvider() {
+	if (inform6TaskProvider) {
+		inform6TaskProvider.dispose()
+	}
+	inform6TaskProvider = vscode.tasks.registerTaskProvider(
+		Inform6TaskProvider.Inform6TaskType,
+		new Inform6TaskProvider()
+	)
 }
 
 /**
