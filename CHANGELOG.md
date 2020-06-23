@@ -1,5 +1,13 @@
 # Change Log
 
+## Unreleased
+
+### Added
+
+- A new command to compile Inform 6 files, available as a play button at the top right of the window, and by right-clicking a file in the explorer. It is also possible to compile a file with a new task.
+- Two new settings: one for the path of the Inform 6 compiler, one for the arguments passed when using the new command or task.
+- Errors reported by the Inform 6 compiler are now showed in the Problems panel (and in the source) when using the new command or task.
+
 ## 0.1.2
 
 ### Added
