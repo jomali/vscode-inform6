@@ -72,7 +72,7 @@
             {
                 "command": "inform6.compile",
                 "category": "Inform 6",
-                "title": "Compile Inform 6 file",
+                "title": "Compile with Inform 6",
                 "icon": "$(run)"
             }
         ],

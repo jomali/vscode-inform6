@@ -53,7 +53,7 @@ export class Inform6TaskProvider implements vscode.TaskProvider {
 		return new vscode.Task(
 			definition,
 			vscode.TaskScope.Workspace,
-			"Compile Inform source",
+			"compile",
 			"inform6",
 			new vscode.ProcessExecution(compiler, compilerArgs),
 			"$inform6"
