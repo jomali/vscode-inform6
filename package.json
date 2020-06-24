@@ -105,15 +105,13 @@
                     "autoDetect",
                     "${workspaceFolder}"
                 ],
-                "pattern": [
-                    {
-                        "regexp": "^(.*)\\((\\d+)\\):\\s+(Error|Fatal error|Warning):\\s*(.*)$",
-                        "file": 1,
-                        "line": 2,
-                        "severity": 3,
-                        "message": 4
-                    }
-                ]
+                "pattern": {
+                    "regexp": "^(.*)\\((\\d+)\\):\\s+(Error|Fatal error|Warning):\\s*(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "severity": 3,
+                    "message": 4
+                }
             }
         ],
         "configuration": {
