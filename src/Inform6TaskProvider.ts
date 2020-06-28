@@ -5,7 +5,6 @@
  */
 
 import * as vscode from "vscode"
-import { PRIORITY_HIGHEST } from "constants"
 
 interface Inform6TaskDefinition extends vscode.TaskDefinition {
 	type: string
