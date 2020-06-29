@@ -90,6 +90,12 @@
                     "command": "inform6.compile",
                     "group": "1_inform6"
                 }
+            ],
+            "commandPalette": [
+                {
+                    "when": "resourceLangId == inform6",
+                    "command": "inform6.compile"
+                }
             ]
         },
         "taskDefinitions": [
