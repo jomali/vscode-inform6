@@ -22,7 +22,10 @@ This compiling feature is mainly for testing. When releasing your story, use the
 
 ## Known issues
 
-See the file `TODO.md` in the repository.
+- If a line of Inform 6 source contains multiple errors, only the last one is reported in the source and the Problems panel when compiling.
+- Errors in the ICL commands (lines with `!%`) are not shown in the source and in the Problems panel. You have to look directly in the output of the compiler to find them.
+
+(See also the file `TODO.md` in the repository for more.)
 
 ## Licence
 
