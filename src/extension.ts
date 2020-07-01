@@ -2,6 +2,9 @@ import * as vscode from "vscode"
 
 import { Inform6TaskProvider } from "./Inform6TaskProvider"
 
+/**
+ * The current Inform 6 task provider.
+ */
 let inform6TaskProvider: vscode.Disposable | undefined
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -20,6 +23,9 @@ export function activate(context: vscode.ExtensionContext): void {
 	context.subscriptions.push(command_compile)
 }
 
+/**
+ * Dispose of the previous Inform 6 task provider if one exists and register a new one.
+ */
 function registerInform6TaskProvider() {
 	if (inform6TaskProvider) {
 		inform6TaskProvider.dispose()
