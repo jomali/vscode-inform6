@@ -11,7 +11,6 @@ export function activate(context: vscode.ExtensionContext): void {
 	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => {
 		if (e.affectsConfiguration("inform6.inform6Path") || e.affectsConfiguration("inform6.compilerCommands")) {
 			registerInform6TaskProvider()
-			console.log("Settings changed!")
 		}
 	}))
 
