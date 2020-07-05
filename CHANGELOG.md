@@ -7,6 +7,18 @@
 - A new command to compile Inform 6 files, available as a play button at the top right of the window, and by right-clicking a file in the explorer. It is also possible to compile a file with a new task.
 - Two new settings: one for the path of the Inform 6 compiler, one for the arguments passed when using the new command or task.
 - Errors reported by the Inform 6 compiler are now showed in the Problems panel (and in the source) when using the new command or task.
+- Directives for declaring static arrays are now highlighted.
+
+### Changed
+
+- JavaScript strings inside arguments of `VorpleExecuteJavaScriptCommand` and `BuildCommand` are not hightlighted anymore. This is because it's impossible to know exactly when a JS string begins and ends when it's split into multiple parts that are concatenated.
+
+### Fixed
+
+- `move x to` is properly highlighted.
+- `Array x ->` and `Array x -->` are properly highlighted.
+- Binary and hexadecimal numbers greater than `$FFFF` are highlighted.
+- Characters consisting of a Unicode escape (such as `'@{2014}'`) are highlighted as characters instead of dictionary words.
 
 ## 0.1.2
 

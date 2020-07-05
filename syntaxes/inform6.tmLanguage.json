@@ -182,7 +182,7 @@
         "keywordControl": {
             "patterns": [
                 {
-                    "match": "(move)\\s+([a-zA-Z_]\\w*)\\s+(buffer|strong|table)",
+                    "match": "\\b(move)\\s+([a-zA-Z_]\\w*)\\s+(to)\\b",
                     "captures": {
                         "1": { "name": "keyword.control.inform6" },
                         "2": {
@@ -208,10 +208,11 @@
         "keywordDirective": {
             "patterns": [
                 {
-                    "match": "(Array)\\s+[a-zA-Z_]\\w*\\s+(buffer|string|table)",
+                    "match": "(?i)\\b(Array)\\s+[a-zA-Z_]\\w*\\s+(static\\s+)?(-->|->|buffer\\b|string\\b|table\\b)",
                     "captures": {
                         "1": { "name": "keyword.other.directive.inform6" },
-                        "2": { "name": "keyword.other.directive.inform6" }
+                        "2": { "name": "keyword.other.directive.inform6" },
+                        "3": { "name": "keyword.other.directive.inform6" }
                     }
                 },
                 {
@@ -280,11 +281,11 @@
             "patterns": [
                 {
                     "name": "constant.numeric.integer.binary.inform6",
-                    "match": "\\$\\$[01]{1,16}\\b"
+                    "match": "\\$\\$[01]+\\b"
                 },
                 {
                     "name": "constant.numeric.integer.hexadecimal.inform6",
-                    "match": "\\$[0-9a-fA-F]{1,4}\\b"
+                    "match": "\\$[0-9a-fA-F]+\\b"
                 },
                 {
                     "name": "constant.numeric.integer.inform6",
@@ -296,7 +297,7 @@
                 },
                 {
                     "name": "constant.numeric.integer.character.inform6",
-                    "match": "'(.|@([\\^`:][aeiouAEIOU]|:y|'[aeiouyAEIOUY]|c[cC]|~[anoANO]|/[oO]|o[aA]|ss|oe|OE|ae|AE|th|Th|et|Et|LL|!!|\\?\\?|<<|>>))'"
+                    "match": "'(.|@(\\{[0-9a-fA-F]{1,6}\\}|[\\^`:][aeiouAEIOU]|:y|'[aeiouyAEIOUY]|c[cC]|~[anoANO]|/[oO]|o[aA]|ss|oe|OE|ae|AE|th|Th|et|Et|LL|!!|\\?\\?|<<|>>))'"
                 },
                 {
                     "name": "constant.language.inform6",
@@ -452,7 +453,7 @@
             "patterns": [
                 {
                     "begin": "(VorpleExecuteJavaScriptCommand|BuildCommand)\\(",
-                    "end": "\\)",
+                    "end": "\\);",
                     "patterns": [
                         {
                             "include": "#javascriptCommand"
@@ -622,32 +623,11 @@
             "patterns": [
                 {
                     "name": "invalid.illegal.js",
-                    "match": "//.*$"
+                    "match": "//[^\"]*"
                 },
                 {
                     "name": "string.quoted.single.js",
-                    "match": "(?<=\")(')",
-                    "captures": {
-                        "1": {
-                            "name": "punctuation.definition.string.end.js"
-                        }
-                    }
-                },
-                {
-                    "name": "string.quoted.single.js",
-                    "begin": "'",
-                    "beginCaptures": {
-                        "0": { "name": "punctuation.definition.string.begin.js" }
-                    },
-                    "end": "(')|(?=\")",
-                    "endCaptures": {
-                        "1": { "name": "punctuation.definition.string.end.js" }
-                    },
-                    "patterns": [
-                        {
-                            "include": "#javascriptString"
-                        }
-                    ]
+                    "match": "'"
                 },
                 {
                     "name": "keyword.control.js",
@@ -692,11 +672,7 @@
                 {
                     "name": "variable.other.js",
                     "match": "(\\$|\\b[a-zA-Z_])[\\w\\$]*"
-                }
-            ]
-        },
-        "javascriptString": {
-            "patterns": [
+                },
                 {
                     "name": "invalid.illegal.js",
                     "match": "\\\\(?:[1-7][0-7]{0,2}|[0-7]{2,3})"
