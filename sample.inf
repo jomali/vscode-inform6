@@ -1,18 +1,17 @@
 !% -Cu
 !% -D
 
-! This is a comment.
+! Some Inform 6 code to show the syntax colouring.
 ! Above, some comments setting compiler options.
 
-! Some directives.
 Include "Parser";
+
 Array buffer --> 9;
 
 #Ifndef MY_CONSTANT;
 Constant MY_CONSTANT;
-#Endif
+#Endif;
 
-! A routine.
 [ Main alpha beta;
 	print "Welcome to ~Inform 6 for VS Code~.^";
 	! Now some escape sequences and a printing variable.
@@ -26,7 +25,7 @@ Constant MY_CONSTANT;
 	alpha = 42 + -4205 - $3f08 / $$1000111010110 % ('x' + '@<<');
 	@fadd $+100 $-1.2345e+2 alpha;
 
-	beta = random(2)
+	beta = random(2);
 	switch(beta) {
 		1: print "one";
 		2: print "two";
@@ -35,7 +34,6 @@ Constant MY_CONSTANT;
 	rtrue;
 ];
 
-! A class.
 Class Treasure
 	with
 		award [ points;
@@ -55,6 +53,919 @@ Treasure ingot "gold ingot" chest
 		before [;
 			Burn: "You wouldn't melt that precious ingot?"
 		];
+
+
+
+! And now, absolutely everything that the extension colours, for testing purpose.
+! From here, the source is no longer valid Inform 6 code.
+
+! Array directives.
+Array byte_array -> 0;
+Array word_array --> 0;
+Array buffer_array buffer 0;
+Array string_array string 0;
+Array table_array table 0;
+
+! Static array directives.
+Array static_byte_array static -> 0;
+Array static_word_array static --> 0;
+Array static_buffer_array static buffer 0;
+Array static_string_array static string 0;
+Array static_table_array static table 0;
+
+! Other directives.
+Abbreviate;
+Array;
+Attribute;
+Constant;
+Default;
+Dictionary;
+End;
+Endif;
+Extend;
+Global;
+Ifdef;
+Iffalse;
+Ifndef;
+Ifnot;
+Iftrue;
+Import;
+Include;
+Link;
+Message;
+Message error
+Message fatalerror
+Message warning;
+Origsource;
+Property;
+Property additive;
+Release;
+Replace;
+Serial;
+Statusline time;
+Statusline score;
+Stub;
+Switches;
+System_file;
+Undef;
+Verb;
+Verb meta;
+Zcharacter;
+Zcharacter table;
+
+! Deprecated directives.
+Fake_action;
+Ifv3;
+Ifv5;
+Lowstring;
+Nearby;
+Trace;
+! And one with a different case, to check if it's case insensitive.
+IFV5;
+
+! Other "keywords" (used when creating verbs).
+alias;
+first;
+last;
+only;
+replace;
+
+! Numbers.
+$$0001011011001;
+$0002D9;
+$0002d9;
+729;
+-729;
+$+729;
+$-729;
+$+729.972;
+$-729.972;
+$+729e+99;
+$-729e-99;
+$+729.972e-99;
+$-729.972e+99;
+
+! Characters.
+'N';
+'''; ! The apostrophe character is a special case.
+'@{2D9}'
+'@{2d9}'
+'@{fffffff}' ! Should show as illegal.
+'@' ! Should show as illegal.
+'@^a' '@^e' '@^i' '@^o' '@^u'
+'@^A' '@^E' '@^I' '@^O' '@^U'
+'@`a' '@`e' '@`i' '@`o' '@`u'
+'@`A' '@`E' '@`I' '@`O' '@`U'
+'@:a' '@:e' '@:i' '@:o' '@:u' '@:y'
+'@:A' '@:E' '@:I' '@:O' '@:U'
+'@'a' '@'e' '@'i' '@'o' '@'u' '@'y'
+'@'A' '@'E' '@'I' '@'O' '@'U' '@'Y'
+'@cc' '@cC'
+'@~a' '@~n' '@~o'
+'@~A' '@~N' '@~O'
+'@/o' '@/O'
+'@oa' '@oA'
+'@ss'
+'@oe' '@OE' '@ae' '@AE'
+'@th' '@Th' '@et' '@Et'
+'@LL'
+'@!!' '@??'
+'@<<' '@>>'
+
+! Language constants.
+false;
+true;
+nothing;
+NULL;
+
+! Strings.
+"Hello World"
+"Unicode escapes: @{2D9} @{2d9}"
+"Unicode escape too big (invalid): @{fffffff}"
+"ZSCII escapes: @@64 @@126"
+"~New line,^quotation marks,~ and folding lines \"
+"Circumflex escapes: @^a @^e @^i @^o @^u @^A @^E @^I @^O @^U"
+"Grave escapes: @`a @`e @`i @`o @`u @`A @`E @`I @`O @`U"
+"Diaeresis escapes: @:a @:e @:i @:o @:u @:y @:A @:E @:I @:O @:U"
+"Acute escape: @'a @'e @'i @'o @'u @'y @'A @'E @'I @'O @'U @'Y"
+"Cedilla escapes: @cc @cC"
+"Tilde escapes: @~a @~n @~o @~A @~N @~O"
+"Slash escapes: @/o @/O"
+"Ring escapes: @oa @oA"
+"Eszett escape: @ss"
+"Ligature escapes: @oe @OE @ae @AE"
+"Icelandic escapes: @th @Th @et @Et"
+"Pound-sterling escape: @LL"
+"Punctuation escapes: @!! @?? @<< @>>"
+"Invalid lone @ sign"
+"Printing variables: @00 @18 @99"
+
+! Dictionary words
+'hello world'
+'plural//p'
+'n//' ! Single character in word.
+'unicode@{2D9}@{2d9}'
+'unicode_too_big@{fffffff}'
+'zscii@@64@@126'
+'quote~'
+'apostrophe^'
+'circumflex@^a@^e@^i@^o@^u@^A@^E@^I@^O@^U'
+'grave@`a@`e@`i@`o@`u@`A@`E@`I@`O@`U'
+'diaeresis@:a@:e@:i@:o@:u@:y@:A@:E@:I@:O@:U'
+'acute@'a@'e@'i@'o@'u@'y@'A@'E@'I@'O@'U@'Y'
+'cedilla@cc@cC'
+'tilde@~a@~n@~o@~A@~N@~O'
+'slash@/o@/O'
+'ring@oa@oA'
+'eszett@ss'
+'ligature@oe@OE@ae@AE'
+'icelandic@th@Th@et@Et'
+'pound-sterling@LL'
+'punctuation@!!@??@<<@>>'
+'invalid@sign'
+'printingvariables@00@18@99' ! Printing variables are invalid in dictionary words.
+
+! A routine with no arguments.
+[ RoutineNoArgs;
+	rtrue;
+];
+
+! A routine with arguments.
+[ RoutineNoArgs arg1 arg2 arg3;
+	rtrue;
+];
+
+! A routine with a comment in its head
+[ RoutineCommentInHead ! A comment.
+	arg1 arg2; ! Another comment.
+	rtrue;
+];
+
+! A routine to test statements, keywords and others.
+[ ShowCaseRoutine;
+	! Keywords.
+	move noun to y;
+	box;
+	break;
+	continue;
+	do;
+	else;
+	font on;
+	font off;
+	for;
+	give;
+	if;
+	inversion;
+	jump;
+	move;
+	new_line;
+	objectloop;
+	print;
+	print_ret;
+	quit;
+	remove;
+	return;
+	rfalse;
+	rtrue;
+	spaces;
+	string;
+	switch;
+	until;
+	while;
+	! Z-machine keywords.
+	read;
+	restore;
+	save;
+	style roman;
+	style bold;
+	style underline;
+	style reverse;
+	style fixed;
+
+	! Some directives, with different cases.
+	#Ifdef MY_CONSTANT;
+	#ENDIF;
+
+	! Operators.
+	class;
+	has;
+	hasnt;
+	in;
+	notin;
+	ofclass;
+	or;
+	private;
+	provides;
+	with;
+	! Arithmetic operators.
+	==
+	~=
+	<=
+	<
+	>=
+	>
+	&&
+	||
+	~~
+	-->
+	->
+	++
+	--
+	+
+	-
+	*
+	/
+	%
+	=
+	&
+	|
+	~
+	,
+	x.&y
+	x.#y
+	x.y
+
+	! Classes.
+	Class;
+	CompassDirection;
+	Object;
+	Routine;
+	String;
+
+	! Support functions.
+	Achieved;
+	AddToScope;
+	AfterRoutines;
+	AllowPushDir;
+	Banner;
+	call;
+	Cap;
+	Centre;
+	ChangePlayer;
+	child;
+	children;
+	CommonAncestor;
+	copy;
+	create;
+	destroy;
+	DictionaryLookup;
+	GetGNAOfObject;
+	HasLightSource;
+	IndirectlyContains;
+	IsSeeThrough;
+	Length;
+	Locale;
+	LoopOverScope;
+	LowerCase;
+	LTI_Insert;
+	metaclass;
+	MoveFloatingObjects;
+	NextEntry;
+	NextWord;
+	NextWordStopped;
+	NounDomain;
+	ObjectIsUntouchable;
+	OffersLight;
+	parent;
+	ParseToken;
+	PlaceInScope;
+	PlayerTo;
+	print_to_array;
+	PrintCapitalised;
+	PrintOrRun;
+	PrintOrRunVal;
+	PrintToBuffer;
+	PronounNotice;
+	PronounValue;
+	random;
+	recreate;
+	remaining;
+	ScopeWithin;
+	SetColour;
+	SetPronoun;
+	SetTime;
+	sibling;
+	StartDaemon;
+	StartTimer;
+	StopDaemon;
+	StopTimer;
+	TestScope;
+	TryNumber;
+	UnsignedCompare;
+	UpperCase;
+	WordAddress;
+	WordInProperty;
+	WordLength;
+	WriteListFrom;
+	YesOrNo;
+
+	! Glulx support functions.
+	ClearScreen;
+	DecimalNumber;
+	DrawStatusLine;
+	glk;
+	KeyCharPrimitive;
+	KeyDelay;
+	MainWindow;
+	MoveCursor;
+	PrintAnything;
+	PrintAnyToArray;
+	ScreenHeight;
+	ScreenWidth;
+	StatusLineHeight;
+
+	! Properties.
+	add_to_scope;
+	after;
+	article;
+	articles;
+	before;
+	before_implicit;
+	cant_go;
+	capacity;
+	compass_look;
+	d_to;
+	daemon;
+	describe;
+	description;
+	door_dir;
+	door_to;
+	e_to;
+	each_turn;
+	ext_initialise;
+	ext_messages;
+	found_in;
+	grammar;
+	in_to;
+	initial;
+	inside_description;
+	invent;
+	life;
+	list_together;
+	n_to;
+	name;
+	ne_to;
+	number;
+	nw_to;
+	orders;
+	out_to;
+	parse_name;
+	plural;
+	react_after;
+	react_before;
+	s_to;
+	se_to;
+	short_name;
+	short_name_indef;
+	sw_to;
+	time_left;
+	time_out;
+	u_to;
+	w_to;
+	when_closed;
+	when_off;
+	when_on;
+	when_open;
+	with_key;
+
+	! Supports constants.
+	LIBRARY_ENGLISH;
+	LIBRARY_GRAMMAR;
+	LIBRARY_PARSER;
+	LIBRARY_VERBLIB;
+	LIBRARY_VERSION;
+	ALWAYS_BIT;
+	CONCEAL_BIT;
+	DEFART_BIT;
+	ENGLISH_BIT;
+	FULLINV_BIT;
+	INDENT_BIT;
+	ISARE_BIT;
+	NEWLINE_BIT;
+	NOARTICLE_BITPARTINV_BIT;
+	RECURSE_BIT;
+	TERSE_BIT;
+	WORKFLAG_BIT;
+	GPR_FAIL;
+	GPR_MULTIPLE;
+	GPR_NUMBER;
+	GPR_PREPOSITION;
+	GPR_REPARSE;
+	CREATURE_TOKEN;
+	HELD_TOKEN;
+	MULTI_TOKEN;
+	MULTIEXCEPT_TOKEN;
+	MULTIHELD_TOKEN;
+	MULTIINSIDE_TOKEN;
+	NUMBER_TOKEN;
+	NOUN_TOKEN;
+	ELEMENTARY_TT;
+	SCOPE_TT;
+	REPARSE_CODE;
+	EACHTURN_REASON;
+	LOOPOVERSCOPE_REASON;
+	PARSING_REASON;
+	REACT_AFTER_REASON;
+	REACT_BEFORE_REASON;
+	TALKING_REASON;
+	TESTSCOPE_REASON;
+	ANIMA_PE;
+	ASKSCOPE_PE;
+	CANTSEE_PE;
+	EXCEPT_PE;
+	ITGONE_PE;
+	JUNKAFTER_PE;
+	MMULTI_PE;
+	MULTI_PE;
+	NOTHELD_PE;
+	NOTHING_PE;
+	NUMBER_PE;
+	SCENERY_PE;
+	STUCK_PE;
+	TOOFEW_PE;
+	TOOLIT_PE;
+	UPTO_PE;
+	VAGUE_PE;
+	VERB_PE;
+	CLR_AZURE;
+	CLR_BLACK;
+	CLR_BLUE;
+	CLR_CYAN;
+	CLR_DEFAULT;
+	CLR_GREEN;
+	CLR_MAGENTA;
+	CLR_PURPLE;
+	CLR_RED;
+	CLR_WHITE;
+	CLR_YELLOW;
+	WIN_ALL;
+	WIN_MAIN;
+	WIN_STATUS;
+	TARGET_GLULX;
+	TARGET_ZCODE;
+	WORDSIZE;
+	FLOAT_INFINITY;
+	FLOAT_NINFINITY;
+	FLOAT_NAN;
+	GG_MAINWIN_ROCK;
+	GG_QUOTEWIN_ROCK;
+	GG_STATUSWIN_ROCK;
+
+	! Support variables.
+	c_style;
+	compass;
+	d_obj;
+	deadflag;
+	e_obj;
+	etype;
+	in_obj;
+	keep_silent;
+	multiple_object;
+	n_obj;
+	ne_obj;
+	notify_mode;
+	nw_obj;
+	out_obj;
+	parsed_number;
+	parser_action;
+	parser_inflection;
+	parser_one;
+	parser_two;
+	s_obj;
+	score;
+	se_obj;
+	selfobj;
+	sw_obj;
+	sys_statusline_flag;
+	take_flag;
+	thedark;
+	turns;
+	u_obj;
+	verb_word;
+	verb_wordnum;
+	w_obj;
+	wn;
+
+	! Glulx support variables.
+	gg_arguments;
+	gg_statuswin_cursize;
+	gg_statuswin_size;
+
+	! Action names.
+	FullScore;
+	LMode1;
+	LMode2;
+	LMode3;
+	Miscellany;
+	NotifyOff;
+	NotifyOn;
+	Objects;
+	Places;
+	PluralFound;
+	Prompt;
+	Pronouns;
+	Quit;
+	Restart;
+	Restore;
+	Save;
+	Score;
+	ScriptOff;
+	ScriptOn;
+	TheSame;
+	Verify;
+	Version;
+	Close;
+	Disrobe;
+	Drop;
+	Eat;
+	Empty;
+	EmptyT;
+	Enter;
+	Examine;
+	Exit;
+	GetOff;
+	Go;
+	GoIn;
+	Insert;
+	Inv;
+	InvTall;
+	InvWide;
+	LetGo;
+	Lock;
+	Look;
+	Open;
+	PutOn;
+	Receive;
+	Remove;
+	Search;
+	SwitchOff;
+	SwitchOn;
+	Take;
+	Transfer;
+	Unlock;
+	Wait;
+	Wear
+	Answer;
+	Ask;
+	AskFor;
+	AskTo;
+	Attack;
+	Blow;
+	Burn;
+	Buy;
+	Climb;
+	Consult;
+	Cut;
+	Dig;
+	Drink;
+	Fill;
+	Give;
+	Jump;
+	JumpIn;
+	JumpOn;
+	JumpOver;
+	Kiss;
+	Listen;
+	LookUnder;
+	Mild;
+	No;
+	NotUnderstood;
+	Order;
+	Pray;
+	Pull;
+	Push;
+	PushDir;
+	Rub;
+	Set;
+	SetTo;
+	Show;
+	Sing;
+	Sleep;
+	Smell;
+	Sorry;
+	Squeeze;
+	Strong;
+	Swim;
+	Swing;
+	Taste;
+	Tell;
+	Think;
+	ThrowAt;
+	ThrownAt;
+	Tie;
+	Touch;
+	Turn;
+	VagueGo;
+	Wake;
+	WakeOther;
+	Wave;
+	WaveHands;
+	Yes;
+
+	! Attributes.
+	absent;
+	animate;
+	clothing;
+	concealed;
+	container;
+	door;
+	edible;
+	enterable;
+	female;
+	general;
+	light;
+	lockable;
+	locked;
+	male;
+	moved;
+	neuter;
+	on;
+	open;
+	openable;
+	pluralname;
+	proper;
+	scenery;
+	scored;
+	static;
+	supporter;
+	switchable;
+	talkable;
+	transparent;
+	visited;
+	workflag;
+	worn;
+
+	! General opcodes.
+	@catch;
+	@pull;
+	@push;
+	@quit;
+	@restore;
+	@save;
+	@throw;
+
+	! Z-machine opcodes.
+	@aread;
+	@buffer_mode;
+	@check_unicode;
+	@encode_text;
+	@erase_window;
+	@input_stream;
+	@loadb;
+	@output_stream;
+	@print_table;
+	@print_unicode;
+	@read_char;
+	@set_color;
+	@set_cursor;
+	@set_window;
+	@sound_effect;
+	@split_window;
+	@tokenise;
+
+	! Glulx opcodes.
+	@accelfunc;
+	@accelparam;
+	@acos;
+	@add;
+	@aload;
+	@aloadb;
+	@aloadbit;
+	@aloads;
+	@asin;
+	@astore;
+	@astoreb;
+	@astorebit;
+	@astores;
+	@atan;
+	@atan2;
+	@binarysearch;
+	@bitand;
+	@bitnot;
+	@bitor;
+	@bitxor;
+	@call;
+	@callf;
+	@callfi;
+	@callfii;
+	@callfiii;
+	@ceil;
+	@copy;
+	@copyb;
+	@copys;
+	@cos;
+	@debugtrap;
+	@div;
+	@exp;
+	@fadd;
+	@fdiv;
+	@floor;
+	@fmod;
+	@fmul;
+	@fsub;
+	@ftonumn;
+	@ftonumz;
+	@gestalt;
+	@getiosys;
+	@getmemsize;
+	@getstringtbl;
+	@glk;
+	@jeq;
+	@jfeq;
+	@jfge;
+	@jfgt;
+	@jfle;
+	@jflt;
+	@jfne;
+	@jge;
+	@jgeu;
+	@jgt;
+	@jgtu;
+	@jisinf;
+	@jisnan;
+	@jle;
+	@jleu;
+	@jltu;
+	@jne;
+	@jlt;
+	@jnz;
+	@jump;
+	@jumpabs;
+	@jz;
+	@linearsearch;
+	@linkedsearch;
+	@log;
+	@malloc;
+	@mcopy;
+	@mfree;
+	@mod;
+	@mul;
+	@mzero;
+	@neg;
+	@nop;
+	@numtof;
+	@pow;
+	@protect;
+	@random;
+	@restart;
+	@restoreundo;
+	@return;
+	@saveundo;
+	@setiosys;
+	@setmemsize;
+	@setrandom;
+	@setstringtbl;
+	@sexb;
+	@sexs;
+	@shiftl;
+	@sin;
+	@sqrt;
+	@sshiftr;
+	@stkcopy;
+	@stkcount;
+	@stkpeek;
+	@stkroll;
+	@stkswap;
+	@streamchar;
+	@streamnum;
+	@streamstr;
+	@streamunichar;
+	@sub;
+	@tailcall;
+	@tan;
+	@ushiftr;
+	@verify;
+
+	! Custom Glulx opcodes.
+	@"S3:123";
+	@"2:234";
+
+	! Action type.
+	##Take;
+
+	! Language variables.
+	action;
+	action_to_be;
+	actor;
+	consult_from;
+	consult_word;
+	indef_mode;
+	inp1;
+	inp2;
+	inventory_stage;
+	lm_n;
+	lm_o;
+	location;
+	noun;
+	player;
+	real_location;
+	scope_reason;
+	scope_stage;
+	second;
+	self;
+	standard_interpreter;
+	the_time;
+	vague_word;
+
+	! Grammar tokens.
+	creature;
+	held;
+	multi;
+	multiexcept;
+	multiheld;
+	multiinside;
+	noun;
+	number; ! TODO
+	topic;
+
+	! Glulx language variables.
+	gg_event;
+	gg_mainwin;
+	gg_statuswin;
+];
+
+! Object declarations
+Object;
+Object orb;
+Object "Orb";
+Object orb "Orb";
+Object orb altar;
+Object orb "Orb" altar;
+
+! Object declarations with arrows.
+Object;
+Object -> orb;
+Object -> "Orb";
+Object -> orb "Orb";
+Object -> orb altar; ! The last word should be illegal.
+Object -> orb "Orb" altar; ! The last word should be illegal.
+Object ->-> -> orb "Orb";
+
+! Object declaration of a custom class.
+! Object declarations
+Treasure;
+Treasure orb;
+Treasure "Orb";
+Treasure orb "Orb";
+Treasure orb altar;
+Treasure orb "Orb" altar;
+
+! Object with embedded routines and attributes.
+Object thing
+	with
+	name 'thing' 'things//p'
+	! Routine with no arguments.
+	routine_with_no_args [;
+		print "Hello";
+	],
+
+	! Routine with arguments.
+	routine_with_args [ arg1 arg2 arg3; ! A comment.
+		print "Hello";
+	],
+
+	has concealed;
+
 
 ! A routine executing a JavaScript command.
 [ UpdateScore;
