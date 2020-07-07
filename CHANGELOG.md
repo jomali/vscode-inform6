@@ -15,10 +15,16 @@
 
 ### Fixed
 
-- `move x to` is properly highlighted.
-- `Array x ->` and `Array x -->` are properly highlighted.
+- `Array x ->` and `Array x -->`, `move x to` and `Zcharacter table` are properly highlighted.
+- `Version` is not highlighted as a deprecated directive. It's now highlighted as a variable, since it's also the name of an action.
 - Binary and hexadecimal numbers greater than `$FFFF` are highlighted.
-- Characters consisting of a Unicode escape (such as `'@{2014}'`) are highlighted as characters instead of dictionary words.
+- Custom Glulx opcodes (e.g. `@"S3:123"`) are highlighted.
+- Characters consisting of a Unicode escape (e.g. `'@{2014}'`) are highlighted as characters instead of dictionary words.
+- Characters consisting of an acute escape (e.g. `'@'e'`) are properly highlighted.
+- The character `'@'` and characters consisting of a Unicode escape with more than 6 digits (e.g. `'@{fffffff}'`) are highlighted as illegal.
+- Capital thorn and eth escapes are properly highlighted in strings.
+- In strings and dictionary words, @ signs not part of escapes are highlighted as illegal.
+- Unicode escapes in dictionary words are highlighted.
 
 ## 0.1.2
 
