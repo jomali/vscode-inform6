@@ -12,9 +12,9 @@ Additionally, strings used as arguments in Vorple's `VorpleExecuteJavaScriptComm
 
 ### Compiling `.inf` files from VS Code
 
-The extension adds a play button at the top right of the window when an Inform 6 file is opened. Clicking on it will compile the file. It's also possible to compile a file by right-clicking it in the explorer and selecting the "Compile with Inform 6" option.
+The extension adds a command to compile Inform 6 files. It is accessible in the command palette, or with the play button at the top right of the window when an Inform 6 file is opened, or by right-clicking an Inform 6 file in the explorer.
 
-Compiler errors and warnings will be reported in the Problems panel as well as in your source.
+By using this command, compiler errors and warnings will be reported in the Problems panel as well as in your source.
 
 You can change the path of the compiler in the settings. It defaults to "inform6" (i.e. assumes the compiler is in your `PATH`). You can also add additional arguments to pass to the compiler (such as `+include_path` to point to the folder where you store your `.h` files). For story-specific arguments, it's better to add `!%` lines at the top of your source, though.
 

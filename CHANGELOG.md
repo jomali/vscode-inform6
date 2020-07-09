@@ -1,13 +1,13 @@
 # Change Log
 
-## Unreleased
+## 0.2.0 (2020-07-09)
 
 ### Added
 
 - A new command to compile Inform 6 files, available as a play button at the top right of the window, and by right-clicking a file in the explorer. It is also possible to compile a file with a new task.
+- Errors reported by the Inform 6 compiler are now showed in the Problems panel and in the source when using the new command or task.
 - Two new settings: one for the path of the Inform 6 compiler, one for the arguments passed when using the new command or task.
-- Errors reported by the Inform 6 compiler are now showed in the Problems panel (and in the source) when using the new command or task.
-- Directives for declaring static arrays are now highlighted.
+- Directives for declaring static arrays are highlighted.
 
 ### Changed
 
@@ -19,7 +19,7 @@
 - `Version` is not highlighted as a deprecated directive. It's now highlighted as a variable, since it's also the name of an action.
 - Binary and hexadecimal numbers greater than `$FFFF` are highlighted.
 - Custom Glulx opcodes (e.g. `@"S3:123"`) are highlighted.
-- Characters consisting of a Unicode escape (e.g. `'@{2014}'`) are highlighted as characters instead of dictionary words.
+- Characters consisting of a Unicode escape (e.g. `'@{2014}'`) are properly highlighted as characters instead of dictionary words.
 - Characters consisting of an acute escape (e.g. `'@'e'`) are properly highlighted.
 - The character `'@'` and characters consisting of a Unicode escape with more than 6 digits (e.g. `'@{fffffff}'`) are highlighted as illegal.
 - Capital thorn and eth escapes are properly highlighted in strings.
