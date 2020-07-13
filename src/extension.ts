@@ -17,7 +17,16 @@ export function activate(context: vscode.ExtensionContext): void {
 		}
 	}))
 
-	const command_compile = vscode.commands.registerCommand("inform6.compile", (uri: vscode.Uri) => {
+	const command_compile = vscode.commands.registerCommand("inform6.compile", (uri: vscode.Uri | undefined) => {
+		// When using the command palette, no uri is provided.
+		// We use the currently active editor in that case.
+		if (!uri) {
+			if (!vscode.window.activeTextEditor) {
+				vscode.window.showErrorMessage("There is no open file to compile with Inform 6")
+				return
+			}
+			uri = vscode.window.activeTextEditor.document.uri
+		}
 		compile(uri)
 	})
 	context.subscriptions.push(command_compile)

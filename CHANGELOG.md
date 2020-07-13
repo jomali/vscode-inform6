@@ -1,4 +1,10 @@
-# Change Log
+# Changelog
+
+## Unreleased
+
+### Fixed
+
+- No more internal error when compiling from the command palette. (It was only internal and didn't impact users nor functionality.)
 
 ## 0.2.0 (2020-07-09)
 
