@@ -113,7 +113,12 @@
                     },
                     "iclCommands": {
                         "type": "array",
-                        "description": "The additional ICL commands to pass to the compiler."
+                        "description": "The additional ICL commands to pass to the compiler.",
+                        "items": {
+                            "type": "string",
+                            "pattern": "^(-|\\+|\\$)",
+                            "patternErrorMessage": "ICL commands must start with -, + or $."
+                        }
                     }
                 }
             }
@@ -146,7 +151,9 @@
                 "inform6.compilerCommands": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "type": "string",
+                        "pattern": "^(-|\\+|\\$)",
+                        "patternErrorMessage": "ICL commands must start with -, + or $."
                     },
                     "default": [],
                     "markdownDescription": "ICL commands to pass to the compiler when compiling within VS Code.\n*Note:* It is usually better to use `!%` at the top of your `inf` file instead of adding ICL commands globally here."
