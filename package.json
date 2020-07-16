@@ -100,7 +100,22 @@
         },
         "taskDefinitions": [
             {
-                "type": "inform6"
+                "type": "inform6",
+                "required": ["source"],
+                "properties": {
+                    "source": {
+                        "type": "string",
+                        "description": "The Inform file to compile."
+                    },
+                    "output": {
+                        "type": "string",
+                        "description": "The destination of the compiled story file."
+                    },
+                    "iclCommands": {
+                        "type": "array",
+                        "description": "The additional ICL commands to pass to the compiler."
+                    }
+                }
             }
         ],
         "problemMatchers": [
