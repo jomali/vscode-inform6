@@ -1,7 +1,8 @@
 import * as vscode from "vscode"
 
 import { Command } from "../command-manager"
-import { Inform6TaskProvider, getInform6Task } from "../Inform6TaskProvider"
+import { Inform6TaskProvider } from "../Inform6TaskProvider"
+import { TaskManager } from "../task-manager"
 
 
 /**
@@ -13,6 +14,11 @@ import { Inform6TaskProvider, getInform6Task } from "../Inform6TaskProvider"
  */
 export class CompileCommand implements Command {
 	readonly id = "inform6.compile"
+	private taskManager: TaskManager
+
+	constructor(taskManager: TaskManager) {
+		this.taskManager = taskManager
+	}
 
 	execute(uri: vscode.Uri | undefined) {
 		// When using the command palette, no uri is provided.
@@ -25,7 +31,7 @@ export class CompileCommand implements Command {
 			uri = vscode.window.activeTextEditor.document.uri
 		}
 
-		vscode.tasks.executeTask(getInform6Task({
+		vscode.tasks.executeTask(this.taskManager.getInform6Task({
 			type: Inform6TaskProvider.Inform6TaskType,
 			source: uri.fsPath
 		}))

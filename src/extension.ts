@@ -2,6 +2,7 @@ import * as vscode from "vscode"
 
 import { CommandManager } from "./command-manager"
 import { Inform6TaskProvider } from "./Inform6TaskProvider"
+import { TaskManager } from "./task-manager"
 
 
 /**
@@ -11,12 +12,15 @@ let inform6TaskProvider: vscode.Disposable | undefined
 
 
 export function activate(context: vscode.ExtensionContext): void {
+	const taskmanager = new TaskManager()
+	context.subscriptions.push(taskmanager)
+
 	inform6TaskProvider = vscode.tasks.registerTaskProvider(
 		Inform6TaskProvider.Inform6TaskType,
-		new Inform6TaskProvider()
+		new Inform6TaskProvider(taskmanager)
 	)
 
-	const commandManager = new CommandManager()
+	const commandManager = new CommandManager(taskmanager)
 	context.subscriptions.push(commandManager)
 }
 

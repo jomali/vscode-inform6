@@ -157,6 +157,16 @@
                     },
                     "default": [],
                     "markdownDescription": "ICL commands to pass to the compiler when compiling within VS Code.\n*Note:* It is usually better to use `!%` at the top of your `inf` file instead of adding ICL commands globally here."
+                },
+                "inform6.openStoryAfterCompilation": {
+                    "type": "string",
+                    "default": "no",
+                    "description": "How to open a story file just after its compilation.",
+                    "enum": ["no", "external"],
+                    "enumDescriptions": [
+                        "Don't open the newly compiled story.",
+                        "Open with the default application associated with the story's extension (e.g. Lectrote for .ulx)."
+                    ]
                 }
             }
         }

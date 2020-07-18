@@ -1,6 +1,7 @@
 import * as vscode from "vscode"
 
 import { CompileCommand } from "./commands/compile"
+import { TaskManager } from "./task-manager"
 
 
 export interface Command {
@@ -12,8 +13,8 @@ export interface Command {
 export class CommandManager {
 	private readonly commands = new Map<string, vscode.Disposable>()
 
-	constructor() {
-		this.register(new CompileCommand())
+	constructor(taskManager: TaskManager) {
+		this.register(new CompileCommand(taskManager))
 	}
 
 	private register<T extends Command>(cmd: T) {
