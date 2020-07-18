@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+### Added
+
+- Stories can now be automatically opened after being compiled. This can be enabled with the `inform6.openStoryAfterCompilation` setting.
+
+### Changed
+
+- There is now a warning if the ICL commands set in the settings do not start with "-", "+" or "$".
+- The extension no longer provides tasks by default. It's still possible for users to define their own `inform6` tasks, or to compile a source with the provided command.
+- The definition of tasks have changed. They now have a mandatory `source` property, and the optional `output` and `iclCommands` properties
+
 ### Fixed
 
 - No more internal error when compiling from the command palette. (It was only internal and didn't impact users nor functionality.)
