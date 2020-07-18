@@ -2,7 +2,7 @@
     "name": "inform-6",
     "displayName": "Inform 6",
     "description": "Inform 6 extension for VS Code",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "homepage": "https://gitlab.com/Natrium729/vscode-inform6",
     "bugs": "https://gitlab.com/Natrium729/vscode-inform6/issues",
     "license": "MIT",
