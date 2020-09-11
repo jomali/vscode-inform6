@@ -132,7 +132,7 @@ async function openStoryFromSource(source: string): Promise<boolean> {
 	for (const extension of extensions) {
 		const storyUri = vscode.Uri.file(path.join(
 			parsedPath.dir,
-			parsedPath.name + ".z5")
+			parsedPath.name + extension)
 		)
 		if (await vscode.env.openExternal(storyUri)) {
 			return true
