@@ -1,3 +1,6 @@
+
+import fsCallbacks = require("fs")
+const fs = fsCallbacks.promises
 import path = require("path")
 
 import * as vscode from "vscode"
@@ -49,7 +52,7 @@ export class TaskManager {
 	 * Create an Inform 6 task from an Inform 6 task definition.
 	 *
 	 * The task will use the compiler and the compiler commands from the settings The
-	 * latter will be overriden by the ICL commands provided in the definition.
+	 * latter will be overridden by the ICL commands provided in the definition.
 	 *
 	 * @param definition - The Inform 6 task definition to use.
 	 */
@@ -111,7 +114,6 @@ export class TaskManager {
 
 
 async function openStoryFromSource(source: string): Promise<boolean> {
-	const settingsIclCommands = vscode.workspace.getConfiguration("inform6").get<string[]>("compilerCommands") || []
 	const parsedPath = path.parse(source)
 
 	// First the most common formats sorted by descending capability, so that if a
@@ -119,6 +121,8 @@ async function openStoryFromSource(source: string): Promise<boolean> {
 	// (e.g. Z8), then the Z8 will be tried first and be opened, even if the Z5 is
 	// still present.
 	// The three last formats are sorted by descending rarity.
+	// TODO: Ideally, we would inspect the !% lines in the source to determine what
+	// format to open, but it'll do for now.
 	const extensions = [
 		".ulx",
 		".z8",
@@ -132,8 +136,17 @@ async function openStoryFromSource(source: string): Promise<boolean> {
 	for (const extension of extensions) {
 		const storyUri = vscode.Uri.file(path.join(
 			parsedPath.dir,
-			parsedPath.name + extension)
-		)
+			parsedPath.name + extension
+		))
+
+		// Check if the file exists.
+		try {
+			await fs.access(storyUri.fsPath, fsCallbacks.constants.F_OK)
+		} catch(err) {
+			continue
+		}
+
+		/* Apparently openExternal returns true even if the file does not exist, hence checking whether the file exists above. */
 		if (await vscode.env.openExternal(storyUri)) {
 			return true
 		}

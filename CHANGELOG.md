@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- Stories in formats other than Z5 are correctly opened after compilation. (Previously, only Z5 stories were opened.)
+
 ## 0.3.0
 
 ### Added
