@@ -6,14 +6,14 @@ import { TaskManager } from "../task-manager"
 
 
 /**
- * Command that execute the Inform 6 task to compile the file at the given Uri.
+ * Command that executes the Inform 6 task to compile in debug mode the file at the given Uri.
  *
  * If no Uri is given, the Uri of the active text editor is used.
  *
  * @param uri The uri of the file to compile.
  */
-export class CompileCommand implements Command {
-	readonly id = "inform6.compile"
+export class CompileDebugCommand implements Command {
+	readonly id = "inform6.compileDebug"
 	private taskManager: TaskManager
 
 	constructor(taskManager: TaskManager) {
@@ -34,7 +34,7 @@ export class CompileCommand implements Command {
 		vscode.tasks.executeTask(this.taskManager.getInform6Task({
 			type: Inform6TaskProvider.Inform6TaskType,
 			source: uri.fsPath,
-			iclCommands: ["-~S~D"]
+			iclCommands: ["-SD"]
 		}))
 	}
 }

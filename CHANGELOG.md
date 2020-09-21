@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Added
+
+- New command to compile a story in debug mode (with the `-SD` argument).
+
+### Changed
+
+- The compile command now explicitly sets the `-~S~D` argument.
+- The play button at the top right of the window now compiles in debug mode by default. It's still possible to compile in non-debug mode by pressing `alt` before clicking the button.
+
 ### Fixed
 
 - Stories in formats other than Z5 are correctly opened after compilation. (Previously, only Z5 stories were opened.)
@@ -33,7 +42,7 @@
 
 ### Changed
 
-- JavaScript strings inside arguments of `VorpleExecuteJavaScriptCommand` and `BuildCommand` are not hightlighted anymore. This is because it's impossible to know exactly when a JS string begins and ends when it's split into multiple parts that are concatenated.
+- JavaScript strings inside arguments of `VorpleExecuteJavaScriptCommand` and `BuildCommand` are not highlighted anymore. This is because it's impossible to know exactly when a JS string begins and ends when it's split into multiple parts that are concatenated.
 
 ### Fixed
 

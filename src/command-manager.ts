@@ -1,6 +1,7 @@
 import * as vscode from "vscode"
 
 import { CompileCommand } from "./commands/compile"
+import { CompileDebugCommand } from "./commands/compile-debug"
 import { TaskManager } from "./task-manager"
 
 
@@ -15,6 +16,7 @@ export class CommandManager {
 
 	constructor(taskManager: TaskManager) {
 		this.register(new CompileCommand(taskManager))
+		this.register(new CompileDebugCommand(taskManager))
 	}
 
 	private register<T extends Command>(cmd: T) {
