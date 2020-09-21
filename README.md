@@ -12,15 +12,15 @@ Additionally, strings used as arguments in Vorple's `VorpleExecuteJavaScriptComm
 
 ### Compiling `.inf` files from VS Code
 
-The extension adds a command to compile Inform 6 files. It is accessible in the command palette, or with the play button at the top right of the window when an Inform 6 file is open, or by right-clicking an Inform 6 file in the explorer.
+The extension adds two commands to compile Inform 6 files: one to compile in debug mode (with `-SD`) and one to compile in non-debug mode, for releasing your story.
 
-By using this command, compiler errors and warnings will be reported in the Problems panel as well as in your source.
+They are accessible in the command palette, or by right-clicking an Inform 6 file in the explorer, or with the play button at the top right of the window when an Inform 6 file is open. In the case of the play button, pressing `alt` before clicking will compile in non-debug mode; clicking without `alt` compiles in debug mode.
+
+By using these commands, compiler errors and warnings will be reported in the Problems panel as well as in your source.
 
 You can change the path of the compiler in the settings. It defaults to "inform6" (i.e. assumes the compiler is in your `PATH`). You can also add additional arguments to pass to the compiler (such as `+include_path` to point to the folder where you store your `.h` files). For story-specific arguments, it's better to add `!%` lines at the top of your source, though.
 
 When compiling, the current working directory of the inform6 process is set to the folder containing the compiled source, so that the output story file is created next to it.
-
-This compiling feature is mainly for testing. When releasing your story, use the command line directly, setting the right options (such as `-~D` to disable debug if you enabled it with `!% -D`).
 
 ## Extension settings
 
