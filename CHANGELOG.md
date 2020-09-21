@@ -13,7 +13,7 @@
 
 ### Fixed
 
-- Stories in formats other than Z5 are correctly opened after compilation. (Previously, only Z5 stories were opened.)
+- Stories in formats other than Z5 are correctly opened after compilation. (Previously, only Z5 stories were opened.) Thanks @JasonLautzenheiser for spotting this bug!
 
 ## 0.3.0
 
