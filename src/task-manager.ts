@@ -12,16 +12,7 @@ export class TaskManager {
 	private disposables: vscode.Disposable[] = []
 
 	constructor() {
-		// Keep track of Inform 6 starting tasks' source.
-		vscode.tasks.onDidStartTask((event) => {
-			if (event.execution.task.definition.type !== Inform6TaskProvider.Inform6TaskType) {
-				return
-			}
-			const definition = event.execution.task.definition as Inform6TaskDefinition
-		}, this, this.disposables)
-
-		// Remove ending Inform 6 tasks' source from filesBeingCompiled,
-		// and open the compiled story if the settings say so.
+		// Open the compiled story if the settings say so.
 		vscode.tasks.onDidEndTaskProcess(async (event) => {
 			if (event.execution.task.definition.type !== Inform6TaskProvider.Inform6TaskType) {
 				return
@@ -38,8 +29,8 @@ export class TaskManager {
 					)
 					return
 				}
-				if (openStory === "external") {
-					const success = await openStoryFromSource(definition.source)
+				if (openStory === "external" || openStory === "vscode") {
+					const success = await openStoryFromSource(definition.source, openStory)
 					if (!success) {
 						vscode.window.showErrorMessage("The compiled story could not be opened.")
 					}
@@ -113,7 +104,7 @@ export class TaskManager {
 }
 
 
-async function openStoryFromSource(source: string): Promise<boolean> {
+async function openStoryFromSource(source: string, method: "external" | "vscode"): Promise<boolean> {
 	const parsedPath = path.parse(source)
 
 	// First the most common formats sorted by descending capability, so that if a
@@ -146,8 +137,14 @@ async function openStoryFromSource(source: string): Promise<boolean> {
 			continue
 		}
 
-		/* Apparently openExternal returns true even if the file does not exist, hence checking whether the file exists above. */
-		if (await vscode.env.openExternal(storyUri)) {
+		if (method === "external") {
+			/* Apparently openExternal returns true even if the file does not exist, hence checking whether the file exists above. */
+			return await vscode.env.openExternal(storyUri)
+		} else if (method === "vscode") {
+			vscode.commands.executeCommand("vscode.open", storyUri, {
+				preview: false,
+				viewColumn: vscode.workspace.getConfiguration("inform6").get<boolean>("openStoryBeside", true) ? vscode.ViewColumn.Beside : undefined
+			})
 			return true
 		}
 	}

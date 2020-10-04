@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- The `openStoryAfterCompilation` setting can take a value of `"vscode"` so that compiled stories are opened in a VS Code tab. The new `openStoryBeside` setting will make the story open beside the active editor instead of in the current column after compilation, if `openStoryAfterCompilation` is set to `"vscode"`.
+
 ## 0.4.0
 
 ### Added

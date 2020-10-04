@@ -178,11 +178,17 @@
                     "type": "string",
                     "default": "no",
                     "description": "How to open a story file just after its compilation.",
-                    "enum": ["no", "external"],
-                    "enumDescriptions": [
+                    "enum": ["no", "external", "vscode"],
+                    "markdownEnumDescriptions": [
                         "Don't open the newly compiled story.",
-                        "Open with the default application associated with the story's extension (e.g. Lectrote for .ulx)."
+                        "Open with the default application associated with the story's extension (e.g. Lectrote for .ulx).",
+                        "Open in a VS Code tab. If the story is already open, the tab will be focused. The [IF Player extension](https://marketplace.visualstudio.com/items?itemName=natrium729.if-player) is recommended."
                     ]
+                },
+                "inform6.openStoryBeside": {
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Open the story beside the active editor after compilation when `#inform6.openStoryAfterCompilation#` is set to \"vscode\"."
                 }
             }
         }

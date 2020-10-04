@@ -24,11 +24,12 @@ When compiling, the current working directory of the inform6 process is set to t
 
 ## Extension settings
 
-This extension contributes the following settings:
+This extension contributes the following settings. All the settings are prefixed with `inform6.` (e.g. `inform6.compilerCommands`).
 
-- `inform6.inform6Path`: The path to the inform 6 compiler. Defaults to `inform6`.
-- `inform6.compilerCommands`: Additional ICL commands to pass to the compiler when compiling from VS Code.
-- `inform6.openStoryAfterCompilation`: Whether or not to open the story after compilation (with the default application associated with the file's extension).
+- `inform6Path`: The path to the inform 6 compiler. Defaults to `inform6`.
+- `compilerCommands`: Additional ICL commands to pass to the compiler when compiling from VS Code.
+- `openStoryAfterCompilation`: If set to `"external"`, story files will be opened with their default application (e.g. Lectrote for `.ulx`) after being compiled. If set to `"vscode"`, story files will be opened in a VS Code tab (the [IF Player extension](https://marketplace.visualstudio.com/items?itemName=natrium729.if-player) is recommended).
+- `openStoryBeside`: If set to true and if `openStoryAfterCompilation` is set to `"vscode"`, the compiled story will be opened beside the active editor instead of in the current column.
 
 ## Known issues
 
