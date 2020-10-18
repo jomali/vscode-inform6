@@ -29,6 +29,7 @@
                     "inform6"
                 ],
                 "extensions": [
+                    ".xinf",
                     ".inf",
                     ".h"
                 ],

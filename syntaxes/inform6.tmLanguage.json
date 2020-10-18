@@ -342,6 +342,10 @@
                 {
                     "name": "support.function.property.inform6",
                     "match": "\\b(add_to_scope|after|article|articles|before|before_implicit|cant_go|capacity|compass_look|d_to|daemon|describe|description|door_dir|door_to|e_to|each_turn|ext_initialise|ext_messages|found_in|grammar|in_to|initial|inside_description|invent|life|list_together|n_to|name|ne_to|number|nw_to|orders|out_to|parse_name|plural|react_after|react_before|s_to|se_to|short_name|short_name_indef|sw_to|time_left|time_out|u_to|w_to|when_closed|when_off|when_on|when_open|with_key)\\b"
+                },
+                {
+                    "name": "support.function.property.infsp6",
+                    "match": "\\b(adjectives|gender|name_f|name_fp|name_m|name_mp)\\b"
                 }
             ]
         },
@@ -382,6 +386,10 @@
                 {
                     "name": "support.constant.glulx.inform6",
                     "match": "\\b(FLOAT_INFINITY|FLOAT_NINFINITY|FLOAT_NAN|GG_MAINWIN_ROCK|GG_QUOTEWIN_ROCK|GG_STATUSWIN_ROCK)\\b"
+                },
+                {
+                    "name": "support.constant.infsp6",
+                    "match": "\\b(G_FEMENINO|G_MASCULINO|G_PLURAL|G_SINGULAR)\\b"
                 }
             ]
         },
